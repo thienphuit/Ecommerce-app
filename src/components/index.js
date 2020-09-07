@@ -6,6 +6,9 @@ import SelecColorOption from './SelecColorOption'
 import SwiperHorizontal from './SwiperHorizontal'
 import ProductCart from './ProductCart'
 import HeaderComponent from './HeaderComponent'
+import SaleOffComponent from './SaleOffComponent'
+import NotificationMask from './NotificationMask'
+import NotificationItem from './NotificationItem'
 
 export {
   Rating,
@@ -16,5 +19,8 @@ export {
   SwiperHorizontal,
   ProductCart,
   HeaderComponent,
+  SaleOffComponent,
+  NotificationMask,
+  NotificationItem,
 
 }

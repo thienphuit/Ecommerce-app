@@ -98,7 +98,7 @@ const TypoGrayphy = {
     lineHeight: 1.5,
   },
   captionLargeTextRegular10: {
-    ...Fonts.bold,
+    ...Fonts.regular,
     fontSize: 10,
     lineHeight: 1.5,
   },

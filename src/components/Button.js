@@ -5,7 +5,6 @@ import {
 import {
   TypoGrayphy, mainPaddingH, Colors, calWidth,
 } from '../../assets/styles'
-// import Text from './Text'
 
 const Button = (props) => {
   const { style, children } = props

@@ -16,6 +16,8 @@ const rvProduct2 = require('./rvProduct2.png')
 const rvProduct3 = require('./rvProduct3.png')
 const phoduct2 = require('./phoduct2.png')
 const home = require('./home.png')
+const promotionImage2 = require('./promotionImage2.png')
+const offer = require('./offer.png')
 const cart = require('./cart.png')
 const productLike = require('./productLike.png')
 const love_24 = require('./system/love_24.png')
@@ -51,5 +53,5 @@ export {
   reviews, phoduct2, productLike, love_24, trash, plus_16, minus_16, logoBlue,
   logoWhite, message, password, iconFB, iconGoogle, notification, promotionImage,
   womanBag, tshirt, shirt, womanShoes, manPants, bikini, manShoes, dress, home,
-  cart,
+  cart, promotionImage2, offer,
 }

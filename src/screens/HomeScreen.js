@@ -1,10 +1,10 @@
-import React, { Component } from 'react'
+import React from 'react'
 import {
   View, StyleSheet, SafeAreaView, Image, Dimensions, FlatList, ScrollView,
 } from 'react-native'
 
 import {
-  Text, SwiperHorizontal, ProductCart, HeaderComponent,
+  Text, SwiperHorizontal, ProductCart, HeaderComponent, SaleOffComponent,
 } from '../components'
 import {
   Colors, TypoGrayphy, mainPaddingH, calWidth,
@@ -35,160 +35,157 @@ const productLikes = [
   { image: phoduct2 },
 ]
 
-class HomeScreen extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-    }
-  }
+const HomeScreen = (props) => {
+  console.log('============================')
+  console.log('propsss', props)
+  console.log('============================')
+  const { navigation } = props
+  return (
+    <View style={styles.container}>
+      <SafeAreaView />
+      <HeaderComponent navigation={navigation} />
+      <View style={{ marginBottom: 16, borderTopColor: Colors.neutralLine, borderTopWidth: StyleSheet.hairlineWidth }} />
+      <ScrollView
+        showsVerticalScrollIndicator={false}
+      >
+        <View style={{
+          flex: 1,
 
-  render() {
-    return (
-      <View style={styles.container}>
-        <SafeAreaView />
-        <HeaderComponent />
-        <View style={{ marginBottom: 16, borderTopColor: Colors.neutralLine, borderTopWidth: StyleSheet.hairlineWidth }} />
-        <ScrollView>
-          <View style={{
-            flex: 1,
-
-          }}
-          >
-            <View style={{ width, height: 260 * calWidth }}>
-              <SwiperHorizontal products={products} />
+        }}
+        >
+          <View style={{ width, height: 260 * calWidth }}>
+            <SwiperHorizontal products={products} />
+          </View>
+          <View>
+            <View style={{
+              flexDirection: 'row', justifyContent: 'space-between', paddingHorizontal: mainPaddingH, marginBottom: 12,
+            }}
+            >
+              <Text style={{ ...TypoGrayphy.heading5 }}>Category</Text>
+              <Text style={{ ...TypoGrayphy.linkLargeTextBold14 }}>More Category</Text>
+            </View>
+            <View>
+              <FlatList
+                horizontal
+                showsHorizontalScrollIndicator={false}
+                data={categoryList}
+                renderItem={({ item }) => {
+                  return (
+                    <CategoryItem category={item} />
+                  )
+                }}
+                keyExtractor={(item, index) => `List category ${index}`}
+              />
             </View>
             <View>
               <View style={{
-                flexDirection: 'row', justifyContent: 'space-between', paddingHorizontal: mainPaddingH, marginBottom: 12,
+                flexDirection: 'row', justifyContent: 'space-between', paddingHorizontal: mainPaddingH, marginBottom: 12, marginTop: 24,
               }}
               >
-                <Text style={{ ...TypoGrayphy.heading5 }}>Category</Text>
-                <Text style={{ ...TypoGrayphy.linkLargeTextBold14 }}>More Category</Text>
+                <Text style={{ ...TypoGrayphy.heading5 }}>Flash Sale</Text>
+                <Text style={{ ...TypoGrayphy.linkLargeTextBold14 }}>See More</Text>
               </View>
-              <View>
+              <View style={{ marginLeft: 16 * calWidth }}>
                 <FlatList
+                  data={productLikes}
                   horizontal
                   showsHorizontalScrollIndicator={false}
-                  data={categoryList}
                   renderItem={({ item }) => {
                     return (
-                      <CategoryItem category={item} />
+                      <ProductCart item={item} />
+
+                    )
+                  }}
+                  keyExtractor={(item, index) => `Productline list ${index}`}
+                />
+              </View>
+              <View style={{
+                flexDirection: 'row', justifyContent: 'space-between', paddingHorizontal: mainPaddingH, marginBottom: 12, marginTop: 24,
+              }}
+              >
+                <Text style={{ ...TypoGrayphy.heading5 }}>Mega Sale</Text>
+                <Text style={{ ...TypoGrayphy.linkLargeTextBold14 }}>See More</Text>
+              </View>
+              <View style={{ marginLeft: 16 * calWidth }}>
+                <FlatList
+                  data={productLikes}
+                  horizontal
+                  showsHorizontalScrollIndicator={false}
+                  renderItem={({ item }) => {
+                    return (
+                      <ProductCart item={item} />
+
+                    )
+                  }}
+                  keyExtractor={(item, index) => `List product ${index}`}
+                />
+              </View>
+              {/*   */}
+              <View style={{ marginHorizontal: 16 * calWidth }}>
+                <SaleOffComponent content="We recomended the best for you" image={promotionImage} topic="Recomended Product" />
+              </View>
+              <View style={{ paddingTop: mainPaddingH, paddingHorizontal: mainPaddingH }}>
+                <FlatList
+                  data={productLikes}
+                  numColumns={2}
+                  renderItem={({ item }) => {
+                    return (
+                      <View style={{
+                        padding: 16 * calWidth,
+                        borderColor: Colors.borderColor,
+                        borderRadius: 5 * calWidth,
+                        width: 165 * calWidth,
+                        justifyContent: 'center',
+                        borderWidth: StyleSheet.hairlineWidth,
+                      }}
+                      >
+                        <Image
+                          resizeMode="contain"
+                          source={item.image}
+                          style={{
+                            width: 133 * calWidth,
+                            height: 133 * calWidth,
+                            borderRadius: 5 * calWidth,
+                          }}
+                        />
+                        <Text style={{ ...TypoGrayphy.heading6, paddingVertical: 8 * calWidth }}>FS - Nike Air Max 270 React...</Text>
+                        <Text style={{ color: Colors.primaryBlue, ...TypoGrayphy.bodyNormalTextBold }}>$299,43</Text>
+                        <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                          <Text style={{
+                            paddingVertical: 8 * calWidth,
+                            ...TypoGrayphy.captionLargeTextRegular10,
+                            ...TypoGrayphy.captionLargeTextLine,
+                            color: Colors.neutralGrey,
+                          }}
+                          >
+                            $534,33
+                          </Text>
+                          <Text style={{
+                            color: Colors.primaryRed, marginLeft: 8, ...TypoGrayphy.captionLargeTextRegular10,
+                          }}
+                          >
+                            24% off
+                          </Text>
+                        </View>
+                      </View>
                     )
                   }}
                   keyExtractor={(item, index) => `List category ${index}`}
+                  columnWrapperStyle={{
+                    justifyContent: 'space-between',
+                    marginBottom: (12 / 375) * width,
+                  }}
                 />
               </View>
-              <View>
-                <View style={{
-                  flexDirection: 'row', justifyContent: 'space-between', paddingHorizontal: mainPaddingH, marginBottom: 12, marginTop: 24,
-                }}
-                >
-                  <Text style={{ ...TypoGrayphy.heading5 }}>Flash Sale</Text>
-                  <Text style={{ ...TypoGrayphy.linkLargeTextBold14 }}>See More</Text>
-                </View>
-                <View style={{ marginLeft: 16 * calWidth }}>
-                  <FlatList
-                    data={productLikes}
-                    horizontal
-                    showsHorizontalScrollIndicator={false}
-                    renderItem={({ item }) => {
-                      return (
-                        <ProductCart item={item} />
-
-                      )
-                    }}
-                    keyExtractor={(item, index) => `Productline list ${index}`}
-                  />
-                </View>
-                <View style={{
-                  flexDirection: 'row', justifyContent: 'space-between', paddingHorizontal: mainPaddingH, marginBottom: 12, marginTop: 24,
-                }}
-                >
-                  <Text style={{ ...TypoGrayphy.heading5 }}>Mega Sale</Text>
-                  <Text style={{ ...TypoGrayphy.linkLargeTextBold14 }}>See More</Text>
-                </View>
-                <View style={{ marginLeft: 16 * calWidth }}>
-                  <FlatList
-                    data={productLikes}
-                    horizontal
-                    showsHorizontalScrollIndicator={false}
-                    renderItem={({ item }) => {
-                      return (
-                        <ProductCart item={item} />
-
-                      )
-                    }}
-                    keyExtractor={(item, index) => `List product ${index}`}
-                  />
-                </View>
-                <View style={{
-                  marginTop: mainPaddingH,
-                }}
-                >
-                  <Image source={promotionImage} resizeMode="contain" style={{ height: 206 * calWidth, width }} />
-                  <View style={{ position: 'absolute', marginLeft: 40 * calWidth }}>
-                    <Text style={{
-                      ...TypoGrayphy.heading2,
-                      width: 169 * calWidth,
-                      height: 72 * calWidth,
-                      // marginVertical: 48 * calWidth,
-                      marginTop: 48 * calWidth,
-                      marginBottom: 24 * calWidth,
-                      color: Colors.backgroudWhite,
-                    }}
-                    >
-                      Recomended Product
-                    </Text>
-                    <Text style={{ color: Colors.backgroudWhite }}>We recomended the best for you</Text>
-                  </View>
-                </View>
-                <View style={{ paddingTop: mainPaddingH, paddingHorizontal: mainPaddingH }}>
-                  <FlatList
-                    data={productLikes}
-                    numColumns={2}
-                    renderItem={({ item }) => {
-                      return (
-                        <View style={{
-                          padding: 16 * calWidth, borderColor: Colors.borderColor, borderRadius: 5 * calWidth, width: 165 * calWidth, justifyContent: 'center', borderWidth: StyleSheet.hairlineWidth,
-                        }}
-                        >
-                          <Image resizeMode="contain" source={item.image} style={{ width: 133 * calWidth, height: 133 * calWidth, borderRadius: 5 * calWidth }} />
-                          <Text style={{ ...TypoGrayphy.heading6, paddingVertical: 8 * calWidth }}>FS - Nike Air Max 270 React...</Text>
-                          <Text style={{ color: Colors.primaryBlue, ...TypoGrayphy.bodyNormalTextBold }}>$299,43</Text>
-                          <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                            <Text style={{
-                              paddingVertical: 8 * calWidth, ...TypoGrayphy.captionLargeTextRegular10, ...TypoGrayphy.captionLargeTextLine, color: Colors.neutralGrey,
-                            }}
-                            >
-                              $534,33
-                            </Text>
-                            <Text style={{
-                              color: Colors.primaryRed, marginLeft: 8, ...TypoGrayphy.captionLargeTextRegular10,
-                            }}
-                            >
-                              24% off
-                            </Text>
-                          </View>
-                        </View>
-                      )
-                    }}
-                    keyExtractor={(item, index) => `List category ${index}`}
-                    columnWrapperStyle={{
-                      justifyContent: 'space-between',
-                      marginBottom: (12 / 375) * width,
-                    }}
-                  />
-                </View>
-              </View>
             </View>
-            <View style={{ height: 100 }} />
           </View>
-        </ScrollView>
+          <View style={{ height: 100 }} />
+        </View>
+      </ScrollView>
 
-        <SafeAreaView />
-      </View>
-    )
-  }
+      <SafeAreaView />
+    </View>
+  )
 }
 
 const styles = StyleSheet.create({

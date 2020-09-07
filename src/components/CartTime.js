@@ -1,12 +1,12 @@
 import React from 'react'
 import { View, Text } from 'react-native'
 
-const BottomNavigation = () => {
+const CartTime = () => {
   return (
     <View>
-      <Text> BottomNavigation </Text>
+      <Text> CartTime </Text>
     </View>
   )
 }
 
-export default BottomNavigation
+export default CartTime
