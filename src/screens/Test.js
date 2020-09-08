@@ -1,18 +1,11 @@
-import React, { Component } from 'react'
-import { View } from 'react-native'
+import React from 'react'
+import { View, Text } from 'react-native'
 
-class Test extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-    }
-  }
-
-  render() {
-    return (
-      <View />
-    )
-  }
+const Component = () => {
+  return (
+    <View>
+      <Text>hllo</Text>
+    </View>
+  )
 }
-
-export default Test
+export default Component

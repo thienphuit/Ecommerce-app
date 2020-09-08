@@ -1,7 +1,7 @@
-import React from 'react'
 import {
   View, StyleSheet, TouchableOpacity,
 } from 'react-native'
+import React from 'react'
 import Icon from 'react-native-vector-icons/FontAwesome'
 import { Text, NotificationMask } from '../../components'
 import { Colors, calWidth } from '../../../assets/styles'
@@ -10,7 +10,7 @@ const Notification = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <TouchableOpacity
-        onPress={() => navigation.navigate('NotificationOffer')}
+        onPress={() => navigation.push('NotificationOffer')}
       >
         <View style={styles.offer}>
           <View style={{ flexDirection: 'row', alignItems: 'center' }}>

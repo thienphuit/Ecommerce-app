@@ -36,10 +36,8 @@ const productLikes = [
 ]
 
 const HomeScreen = (props) => {
-  console.log('============================')
-  console.log('propsss', props)
-  console.log('============================')
   const { navigation } = props
+
   return (
     <View style={styles.container}>
       <SafeAreaView />
@@ -92,7 +90,7 @@ const HomeScreen = (props) => {
                   showsHorizontalScrollIndicator={false}
                   renderItem={({ item }) => {
                     return (
-                      <ProductCart item={item} />
+                      <ProductCart item={item} handleChooseItem={() => navigation.navigate('ProductDetail')} />
 
                     )
                   }}
@@ -113,11 +111,14 @@ const HomeScreen = (props) => {
                   showsHorizontalScrollIndicator={false}
                   renderItem={({ item }) => {
                     return (
-                      <ProductCart item={item} />
+                      <ProductCart
+                        item={item}
+                        handleChooseItem={() => navigation.navigate('ProductDetail')}
+                      />
 
                     )
                   }}
-                  keyExtractor={(item, index) => `List product ${index}`}
+                  keyExtractor={(item, index) => `List product -${index}`}
                 />
               </View>
               {/*   */}

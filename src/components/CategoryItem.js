@@ -6,10 +6,10 @@ import {
 import Text from './Text'
 
 const CategoryItem = (props) => {
-  const { category } = props
+  const { category, style } = props
   return (
     <View style={{
-      width: 70 * calWidth, alignItems: 'center', marginLeft: 16 * calWidth,
+      width: 70 * calWidth, alignItems: 'center', marginLeft: 16 * calWidth, ...style,
     }}
     >
       <View style={{

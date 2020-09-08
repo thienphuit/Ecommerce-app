@@ -7,7 +7,7 @@ import {
   back, search, iconMore, shoesImage, shoes_2, iconFavorite, avatar, reviews, phoduct2, productLike,
 } from '../../assets/images'
 import Rating from '../components/Rating'
-import { Text, SelecColorOption } from '../components'
+import { Text, SelecColorOption, ButtonComponent } from '../components'
 import { TypoGrayphy, Colors } from '../../assets/styles'
 import SelecSizeOption from '../components/SelecSizeOption'
 import ProductCart from '../components/ProductCart'
@@ -44,7 +44,7 @@ const nums = [
   '6', '6.5', '7', '7.5', '8', '8.5',
 ]
 
-const ProducDetail = () => {
+const ProducDetail = (props) => {
   const [currentSize, setCurrentSize] = useState('6')
   const [currentColor, setCurrentColor] = useState(Colors.primaryYellow)
 
@@ -75,13 +75,15 @@ const ProducDetail = () => {
     )
   }
 
-  // const { currenSize, currentColor } = this.state
+  const { navigation } = props
   return (
     <View style={styles.container}>
       <SafeAreaView />
       <View style={styles.appBar}>
         <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-          <Image source={back} style={{}} />
+          <TouchableOpacity onPress={() => navigation.goBack()}>
+            <Image source={back} resizeMode="contain" />
+          </TouchableOpacity>
           <Text style={styles.titleAppbar}> Nike Air Max 270 Rea...</Text>
         </View>
         <View style={{ flexDirection: 'row' }}>
@@ -268,27 +270,12 @@ const ProducDetail = () => {
       </ScrollView>
       <View style={{
         position: 'absolute',
-        bottom: 0,
+        bottom: 16,
         width,
-        alignItems: 'center',
+        // alignItems: 'center',
       }}
       >
-        <TouchableOpacity
-          onPress={handleAddToCart}
-        >
-          <View style={{
-            justifyContent: 'center',
-            alignItems: 'center',
-            height: 57 * calWidth,
-            borderRadius: 5 * calWidth,
-            backgroundColor: '#40BFFF',
-            marginVertical: 20 * calWidth,
-            width: 343 / 375 * width,
-          }}
-          >
-            <Text style={{ ...Fonts.fontPoppinsBold, fontSize: 14 * calWidth, color: Colors.backgroudWhite }}>Add to cart</Text>
-          </View>
-        </TouchableOpacity>
+        <ButtonComponent name="Add To Cart" handleClick={handleAddToCart} />
       </View>
       <SafeAreaView />
     </View>

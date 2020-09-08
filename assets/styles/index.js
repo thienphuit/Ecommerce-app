@@ -117,6 +117,11 @@ const TypoGrayphy = {
     lineHeight: 1.5,
     color: Colors.primaryBlue,
   },
+  buttonText: {
+    ...Fonts.bold,
+    fontSize: 14,
+    color: Colors.backgroudWhite,
+  },
 
 }
 

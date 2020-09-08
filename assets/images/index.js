@@ -19,6 +19,9 @@ const home = require('./home.png')
 const promotionImage2 = require('./promotionImage2.png')
 const offer = require('./offer.png')
 const cart = require('./cart.png')
+const bottomIcon = require('./bottomIcon.png')
+const rightICon = require('./rightICon.png')
+const userBlue = require('./userBlue.png')
 const productLike = require('./productLike.png')
 const love_24 = require('./system/love_24.png')
 const trash = require('./system/trash.png')
@@ -28,7 +31,7 @@ const logoBlue = require('./logoBlue.png')
 const promotionImage = require('./promotionImage.png')
 const logoWhite = require('./logoWhite.png')
 const message = require('./system/message.png')
-const password = require('./system/password.png')
+const passIcon = require('./system/password.png')
 const iconFB = require('./system/iconFB.png')
 const iconGoogle = require('./system/iconGoogle.png')
 const notification = require('./system/notification.png')
@@ -40,6 +43,15 @@ const manPants = require('./system/manPants.png')
 const bikini = require('./system/bikini.png')
 const manShoes = require('./system/manShoes.png')
 const dress = require('./system/dress.png')
+const shortIcon = require('./shortIcon.png')
+const filter = require('./filter.png')
+const creditCard = require('./creditCard.png')
+const debitCard = require('./debitCard.png')
+const alterIcon = require('./alterIcon.png')
+export const messageBlue = require('./messageBlue.png')
+export const dateBlue = require('./dateBlue.png')
+export const phoneBlue = require('./phoneBlue.png')
+export const bag = require('./bag.png')
 
 const reviews = [
   { image: rvProduct },
@@ -51,7 +63,8 @@ export {
   back, refresh, male, female, butonBg, search,
   iconMore, shoesImage, shoes_2, star, starActive, iconFavorite, avatar,
   reviews, phoduct2, productLike, love_24, trash, plus_16, minus_16, logoBlue,
-  logoWhite, message, password, iconFB, iconGoogle, notification, promotionImage,
+  logoWhite, message, passIcon, iconFB, iconGoogle, notification, promotionImage,
   womanBag, tshirt, shirt, womanShoes, manPants, bikini, manShoes, dress, home,
-  cart, promotionImage2, offer,
+  cart, promotionImage2, offer, userBlue, rightICon, bottomIcon, shortIcon, filter,
+  creditCard, debitCard, alterIcon,
 }

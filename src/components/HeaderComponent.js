@@ -1,8 +1,7 @@
 import React from 'react'
 import {
-  View, Image, TextInput, StyleSheet,
+  View, Image, TextInput, StyleSheet, TouchableOpacity,
 } from 'react-native'
-import { TouchableOpacity } from 'react-native-gesture-handler'
 import {
   Colors, mainPaddingH, calWidth,
 } from '../../assets/styles'

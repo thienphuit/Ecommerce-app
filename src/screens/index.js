@@ -1,6 +1,8 @@
 import HomeScreen from './HomeScreen'
-import CartScreen from './CartScreen'
+import AccountScreen from './AccountScreen'
+import ProductDetail from './ProductDetail'
+import OfferScreen from './OfferScreen'
 
 export {
-  HomeScreen, CartScreen,
+  HomeScreen, AccountScreen, ProductDetail, OfferScreen,
 }

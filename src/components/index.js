@@ -9,6 +9,15 @@ import HeaderComponent from './HeaderComponent'
 import SaleOffComponent from './SaleOffComponent'
 import NotificationMask from './NotificationMask'
 import NotificationItem from './NotificationItem'
+import ProfileItem from './ProfileItem'
+import ButtonComponent from './ButtonCompoent'
+import Header from './Header'
+import CategoryItem from './CategoryItem'
+import ProductCartHorizontal from './ProductCartHorizontal'
+import CartAddress from './CartAddress'
+import PickerComponent from './PickerComponent'
+import TextInput from './TextInput'
+import CardOrder from './CardOrder'
 
 export {
   Rating,
@@ -22,5 +31,13 @@ export {
   SaleOffComponent,
   NotificationMask,
   NotificationItem,
-
+  ProfileItem,
+  ButtonComponent,
+  Header,
+  CategoryItem,
+  ProductCartHorizontal,
+  CartAddress,
+  PickerComponent,
+  TextInput,
+  CardOrder,
 }
