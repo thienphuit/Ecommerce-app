@@ -1,6 +1,8 @@
 import React from 'react'
-import { View, StyleSheet } from 'react-native'
-import { NotificationItem } from '../../components'
+import {
+  View, StyleSheet, SafeAreaView, FlatList,
+} from 'react-native'
+import { NotificationItem, Header } from '../../components'
 import { productLike, shoes_2, shoesImage } from '../../../assets/images'
 
 const listItems = [
@@ -20,14 +22,17 @@ const listItems = [
     image: shoesImage,
   },
 ]
-const NotificationFeed = () => {
+const NotificationFeed = (props) => {
+  const { navigation } = props
   return (
     <View style={styles.container}>
-      <View>
-        <NotificationItem title={listItems[0].title} content={listItems[0].content} image={listItems[0].image} />
-        <NotificationItem title={listItems[1].title} content={listItems[1].content} image={listItems[1].image} />
-        <NotificationItem title={listItems[2].title} content={listItems[2].content} image={listItems[2].image} />
-      </View>
+      <SafeAreaView />
+      <Header title="Feed" navigation={navigation} />
+      <FlatList
+        data={listItems}
+        renderItem={({ item }) => <NotificationItem item={item} />}
+        keyExtractor={(item) => `List notift ${item.id}`}
+      />
     </View>
   )
 }

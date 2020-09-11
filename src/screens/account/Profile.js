@@ -11,7 +11,12 @@ import {
   TypoGrayphy,
 } from '../../../assets/styles'
 import {
-  userBlue, avatar, messageBlue, dateBlue, phoneBlue,
+  avatar,
+  messageBlue,
+  dateBlue,
+  phoneBlue,
+  gender,
+  passIcon,
 } from '../../../assets/images'
 
 const Profile = (props) => {
@@ -35,7 +40,12 @@ const Profile = (props) => {
             </View>
           </TouchableOpacity>
         </View>
-        <ProfileItem image={userBlue} label="Gender" value="Male" nextScreen={() => navigation.navigate('Gender')} />
+        <ProfileItem
+          image={gender}
+          label="Gender"
+          value="Male"
+          nextScreen={() => navigation.navigate('Gender')}
+        />
         <ProfileItem
           image={dateBlue}
           label="Birthday"
@@ -62,7 +72,7 @@ const Profile = (props) => {
           })}
         />
         <ProfileItem
-          image={userBlue}
+          image={passIcon}
           label="Change Password"
           value="•••••••••••••••••"
           nextScreen={() => navigation.navigate('ChangePass', {

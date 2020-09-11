@@ -1,14 +1,16 @@
 import {
-  View, StyleSheet, TouchableOpacity,
+  View, StyleSheet, TouchableOpacity, SafeAreaView,
 } from 'react-native'
 import React from 'react'
 import Icon from 'react-native-vector-icons/FontAwesome'
-import { Text, NotificationMask } from '../../components'
+import { Text, NotificationMask, Header } from '../../components'
 import { Colors, calWidth } from '../../../assets/styles'
 
 const Notification = ({ navigation }) => {
   return (
     <View style={styles.container}>
+      <SafeAreaView />
+      <Header title="Notification" navigation={navigation} />
       <TouchableOpacity
         onPress={() => navigation.push('NotificationOffer')}
       >

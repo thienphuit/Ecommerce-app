@@ -48,10 +48,17 @@ const filter = require('./filter.png')
 const creditCard = require('./creditCard.png')
 const debitCard = require('./debitCard.png')
 const alterIcon = require('./alterIcon.png')
-export const messageBlue = require('./messageBlue.png')
-export const dateBlue = require('./dateBlue.png')
-export const phoneBlue = require('./phoneBlue.png')
-export const bag = require('./bag.png')
+const messageBlue = require('./messageBlue.png')
+const dateBlue = require('./dateBlue.png')
+const phoneBlue = require('./phoneBlue.png')
+const bag = require('./bag.png')
+const user = require('./user.png')
+const location = require('./location.png')
+const card = require('./card.png')
+const gender = require('./gender.png')
+const paypal = require('./paypal.png')
+const transaction = require('./transaction.png')
+const plus = require('./plus.png')
 
 const reviews = [
   { image: rvProduct },
@@ -66,5 +73,6 @@ export {
   logoWhite, message, passIcon, iconFB, iconGoogle, notification, promotionImage,
   womanBag, tshirt, shirt, womanShoes, manPants, bikini, manShoes, dress, home,
   cart, promotionImage2, offer, userBlue, rightICon, bottomIcon, shortIcon, filter,
-  creditCard, debitCard, alterIcon,
+  creditCard, debitCard, alterIcon, messageBlue, dateBlue, bag, user, location,
+  card, phoneBlue, gender, paypal, transaction, plus,
 }

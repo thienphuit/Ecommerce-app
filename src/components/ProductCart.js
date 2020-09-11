@@ -8,14 +8,33 @@ import { TypoGrayphy, Colors } from '../../assets/styles'
 const { width } = Dimensions.get('window')
 const calWidth = width / 375
 const ProductCart = (props) => {
-  const { item, handleChooseItem } = props
+  const {
+    item, handleChooseItem, style, margin,
+  } = props
+  const { sImage } = { ...style }
   return (
     <TouchableOpacity onPress={() => handleChooseItem()}>
-      <View style={{
-        padding: 16 * calWidth, borderColor: Colors.borderColor, borderRadius: 5 * calWidth, width: 141 * calWidth, justifyContent: 'center', marginRight: 16, borderWidth: StyleSheet.hairlineWidth,
-      }}
+      <View style={[{
+        padding: 16 * calWidth,
+        borderColor: Colors.borderColor,
+        borderRadius: 5 * calWidth,
+        width: 141 * calWidth,
+        justifyContent: 'center',
+        marginRight: margin,
+        borderWidth: StyleSheet.hairlineWidth,
+      }, { ...style }]}
       >
-        <Image resizeMode="contain" source={item.image} style={{ width: 109 * calWidth, height: 109 * calWidth, borderRadius: 5 * calWidth }} />
+        <Image
+          resizeMode="contain"
+          source={item.image}
+          style={
+            {
+              width: sImage || 109 * calWidth,
+              height: sImage || 109 * calWidth,
+              borderRadius: 5 * calWidth,
+            }
+          }
+        />
         <Text style={{ ...TypoGrayphy.heading6, paddingVertical: 8 * calWidth }}>FS - Nike Air Max 270 React...</Text>
         <Text style={{ color: Colors.primaryBlue, ...TypoGrayphy.bodyNormalTextBold }}>$299,43</Text>
         <View style={{ flexDirection: 'row', alignItems: 'center' }}>

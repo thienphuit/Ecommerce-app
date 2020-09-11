@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import {
   View, StyleSheet, SafeAreaView,
 } from 'react-native'
-import { ButtonComponent, TextInput } from '../../components'
+import { ButtonComponent, TextInput, Header } from '../../components'
 import {
   calWidth,
   Colors,
@@ -12,7 +12,7 @@ import {
   messageBlue, passIcon,
 } from '../../../assets/images'
 
-const ChangePass = ({ route }) => {
+const ChangePass = ({ route, navigation }) => {
   const [value, setValue] = useState(password)
   const [isActive, setIsActive] = useState(false)
   const handleButtonSave = () => {
@@ -34,6 +34,7 @@ const ChangePass = ({ route }) => {
   return (
     <View style={styles.container}>
       <SafeAreaView />
+      <Header title="Name" navigation={navigation} />
       <View style={{ flex: 1, paddingHorizontal: mainPaddingH }}>
 
         <TextInput

@@ -3,7 +3,11 @@ import {
   View, StyleSheet, SafeAreaView, Alert,
 } from 'react-native'
 import { TextInput } from 'react-native-gesture-handler'
-import { Text, ButtonComponent } from '../../components'
+import {
+  Text,
+  ButtonComponent,
+  Header,
+} from '../../components'
 import {
   calWidth,
   Colors,
@@ -11,21 +15,15 @@ import {
   TypoGrayphy,
 } from '../../../assets/styles'
 
-const ChangeName = () => {
+const ChangeName = (props) => {
   const handleButtonSave = () => {
     Alert.alert('Save success')
   }
+  const { navigation } = props
   return (
     <View style={styles.container}>
       <SafeAreaView />
-      <View style={{
-        paddingVertical: 26 * calWidth,
-        borderBottomWidth: 2 * StyleSheet.hairlineWidth,
-        borderBottomColor: Colors.borderColor,
-      }}
-      >
-        <Text style={{ ...TypoGrayphy.heading4, marginLeft: mainPaddingH }}>Name</Text>
-      </View>
+      <Header title="Name" navigation={navigation} />
       <View style={{ flex: 1, paddingHorizontal: mainPaddingH }}>
         <View style={{ marginTop: mainPaddingH }}>
           <Text style={{ ...TypoGrayphy.heading5 }}>First Name</Text>

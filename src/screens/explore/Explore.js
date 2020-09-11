@@ -26,7 +26,7 @@ const Explore = (props) => {
   return (
     <View style={styles.container}>
       <SafeAreaView />
-      <HeaderComponent nextScreen={() => navigation.navigate('Gender')} />
+      <HeaderComponent navigation={navigation} />
       <View style={{
         flex: 1, borderTopColor: Colors.neutralLine, borderTopWidth: 1, paddingTop: 12,
       }}

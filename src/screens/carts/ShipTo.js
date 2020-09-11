@@ -2,15 +2,19 @@ import {
   View, StyleSheet, ScrollView, SafeAreaView,
 } from 'react-native'
 import React, { useState } from 'react'
-import { CartAddress, ButtonComponent } from '../../components'
+import { CartAddress, ButtonComponent, Header } from '../../components'
 import {
   mainPaddingH, calWidth,
 } from '../../../assets/styles'
+import {
+  plus,
+} from '../../../assets/images'
 
 const listAddress = [
   { id: 1, title: 'Priscekila' },
   { id: 2, title: 'Priscekila' },
 ]
+
 const Shipto = ({ navigation }) => {
   const [indexCart, setIndexCart] = useState(0)
   const handleFocus = (item) => {
@@ -18,15 +22,19 @@ const Shipto = ({ navigation }) => {
   }
   return (
     <View style={styles.container}>
+      <SafeAreaView />
+      <Header title="Shipto" navigation={navigation} icon={plus} />
       <ScrollView>
         <View>
-          {listAddress.map((item) => <CartAddress
-            itemCart={item}
-            handleFocus={(itemCart) => handleFocus(itemCart)}
-            colorFocus={item.id === indexCart}
-            navigation={() => navigation.navigate('Address')}
-            handleDelete={() => navigation.navigate('DeleteAddress')}
-          />)}
+          {listAddress.map((item) => <View key={item.id}>
+            <CartAddress
+              itemCart={item}
+              handleFocus={(itemCart) => handleFocus(itemCart)}
+              colorFocus={item.id === indexCart}
+              navigation={() => navigation.navigate('Address')}
+              handleDelete={() => navigation.navigate('DeleteAddress')}
+            />
+          </View>)}
         </View>
       </ScrollView>
       <View style={{ marginBottom: mainPaddingH }}>

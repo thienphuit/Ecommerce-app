@@ -3,7 +3,9 @@ import {
   View, StyleSheet, SafeAreaView, Alert,
 } from 'react-native'
 import { TextInput, ScrollView } from 'react-native-gesture-handler'
-import { Text, ButtonComponent, PickerComponent } from '../../components'
+import {
+  Text, ButtonComponent, PickerComponent, Header,
+} from '../../components'
 import {
   calWidth,
   Colors,
@@ -18,7 +20,7 @@ const listPicker = [
   { id: 4, tilte: 'Albania' },
   { id: 5, tilte: 'American Samoa' },
 ]
-const Address = () => {
+const Address = ({ navigation }) => {
   const handleButtonSave = () => {
     Alert.alert('Save success')
   }
@@ -35,6 +37,7 @@ const Address = () => {
   return (
     <View style={styles.container}>
       <SafeAreaView />
+      <Header title="Address" navigation={navigation} />
       <ScrollView>
         <View style={{ flex: 1, paddingHorizontal: mainPaddingH }}>
           <View style={{ marginTop: mainPaddingH }}>

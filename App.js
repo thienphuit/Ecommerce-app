@@ -1,4 +1,3 @@
-/* eslint-disable react/jsx-props-no-spreading */
 /**
  * Sample React Native App
  * https://github.com/facebook/react-native
@@ -8,51 +7,51 @@
  */
 import 'react-native-gesture-handler'
 import React from 'react'
+import { Image } from 'react-native'
 import { NavigationContainer } from '@react-navigation/native'
 import { createStackNavigator } from '@react-navigation/stack'
 
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
-import Icon from 'react-native-vector-icons/FontAwesome'
 import {
-  HomeScreen, AccountScreen, ProductDetail, OfferScreen,
+  HomeScreen, AccountScreen, ProductDetail, OfferScreen, FavoriteProduct, WriteReview,
 } from './src/screens'
 import {
-  Notification, NotificationOffer, NotificationFeed, NotificationActivity,
+  Notification,
+  NotificationOffer,
+  NotificationFeed,
+  NotificationActivity,
 } from './src/screens/notifications'
 import {
-  Profile, ChangeName, Gender, BirthDay, Email, Phone, ChangePass, Order,
+  Profile,
+  ChangeName,
+  Gender,
+  BirthDay,
+  Email,
+  Phone,
+  ChangePass,
+  Order,
 } from './src/screens/account'
 import { Explore } from './src/screens/explore'
-import { Header } from './src/components'
 import {
-  CartScreen, ShipTo, PaymentMethod, CreditCard, AddCard, Address, DeleteAddress,
+  CartScreen,
+  ShipTo,
+  PaymentMethod,
+  CreditCard,
+  AddCard,
+  Address,
+  DeleteAddress,
 } from './src/screens/carts'
+import {
+  home,
+  search,
+  cart,
+  offer,
+  user,
+} from './assets/images'
+import { calWidth } from './assets/styles'
 
 const Stack = createStackNavigator()
 const Tab = createBottomTabNavigator()
-
-const NotificationComponent = () => {
-  return (
-    <Stack.Navigator>
-      <Stack.Screen
-        name="Notification"
-        component={Notification}
-        options={{
-          headerShown: true,
-          header: (props) => <Header title="Notification" {...props} />,
-        }}
-      />
-      <Stack.Screen
-        options={{
-          headerShown: true,
-          header: (props) => <Header title="Other" {...props} />,
-        }}
-        name="NotificationOffer"
-        component={NotificationOffer}
-      />
-    </Stack.Navigator>
-  )
-}
 
 const HomeStack = ({ navigation, route }) => {
   if (route.state && route.state.index > 0) {
@@ -61,140 +60,74 @@ const HomeStack = ({ navigation, route }) => {
     navigation.setOptions({ tabBarVisible: true })
   }
   return (
-    <Stack.Navigator>
+    <Stack.Navigator
+      screenOptions={{
+        headerShown: false,
+      }}
+    >
       <Stack.Screen
-        options={{
-          headerShown: false,
-          // headerLeft: null,
-          // headerRight: null,
-          // headerTitle: (props) => <HeaderComponent {...props} />,
-        }}
         name="HomeScreen"
         component={HomeScreen}
       />
       <Stack.Screen
-        options={{
-          headerShown: false,
-          // header: (props) => <Header title="Notification" {...props} />,
-        }}
         name="Notification"
-        component={NotificationComponent}
+        component={Notification}
       />
       <Stack.Screen
-        options={{
-          headerShown: true,
-          header: (props) => <Header title="Other" {...props} />,
-        }}
         name="NotificationOffer"
         component={NotificationOffer}
       />
       <Stack.Screen
-        options={{
-          headerShown: true,
-          header: (props) => <Header title="Feed" {...props} />,
-        }}
         name="NotificationFeed"
         component={NotificationFeed}
       />
       <Stack.Screen
-        options={{
-          headerShown: true,
-          // eslint-disable-next-line react/jsx-props-no-spreading
-          header: (props) => <Header title="Activity" {...props} />,
-        }}
         name="NotificationActivity"
         component={NotificationActivity}
       />
       <Stack.Screen
-        options={{
-          headerShown: false,
-        }}
         name="ProductDetail"
         component={ProductDetail}
       />
+      <Stack.Screen
+        name="Favorite"
+        component={FavoriteProduct}
+      />
+      <Stack.Screen
+        name="WriteReview"
+        component={WriteReview}
+      />
+
     </Stack.Navigator>
   )
 }
-const AccountStack = ({ navigation, route }) => {
-  if (route.state && route.state.index > 0) {
-    navigation.setOptions({
-      tabBarVisible: false,
-      headerShown: false,
-    })
-  } else {
-    navigation.setOptions({ tabBarVisible: true })
-  }
+
+const ExploreStack = () => {
   return (
-    <Stack.Navigator initialRouteName="AccountScreen">
+    <Stack.Navigator
+      screenOptions={{
+        headerShown: false,
+      }}
+    >
       <Stack.Screen
-        options={{
-          headerShown: false,
-        }}
-        name="AccountScreen"
-        component={AccountScreen}
+        name="Explore"
+        component={Explore}
       />
       <Stack.Screen
-        options={{
-          headerShown: false,
-          // header: (props) => <Header title="Profile" {...props} />,
-        }}
-        name="Profile"
-        component={Profile}
+        name="Notification"
+        component={Notification}
       />
       <Stack.Screen
-        options={{
-          headerShown: true,
-        }}
-        name="ChangeName"
-        component={ChangeName}
+        name="NotificationOffer"
+        component={NotificationOffer}
       />
       <Stack.Screen
-        options={{
-          headerShown: true,
-          header: (props) => <Header title="Gender" {...props} />,
-        }}
-        name="Gender"
-        component={Gender}
+        name="NotificationFeed"
+        component={NotificationFeed}
       />
       <Stack.Screen
-        options={{
-          headerShown: true,
-          header: (props) => <Header title="BirthDay" {...props} />,
-        }}
-        name="BirthDay"
-        component={BirthDay}
-      />
-      <Stack.Screen
-        options={{
-          headerShown: true,
-          header: (props) => <Header title="Email" {...props} />,
-        }}
-        name="Email"
-        component={Email}
-      />
-      <Stack.Screen
-        options={{
-          headerShown: true,
-          header: (props) => <Header title="Phone Number" {...props} />,
-        }}
-        name="Phone"
-        component={Phone}
-      />
-      <Stack.Screen
-        options={{
-          headerShown: true,
-          header: (props) => <Header title="Change Password" {...props} />,
-        }}
-        name="ChangePass"
-        component={ChangePass}
-      />
-      <Stack.Screen
-        options={{
-          headerShown: true,
-          header: (props) => <Header title="Order" {...props} />,
-        }}
-        name="Order"
-        component={Order}
+        name="NotificationActivity"
+        component={NotificationActivity}
       />
     </Stack.Navigator>
   )
@@ -209,58 +142,29 @@ const CartStack = ({ navigation, route }) => {
   return (
     <Stack.Navigator
       initialRouteName="CartScreen"
-      setOptions={{
-      }}
-    // screenOptions={{ headerShown: false }}
+      screenOptions={{ headerShown: false }}
     >
       <Stack.Screen
-        options={{
-          headerShown: false,
-        }}
         name="CartScreen"
         component={CartScreen}
       />
       <Stack.Screen
-        options={{
-          headerShown: true,
-          header: (props) => <Header title="Shipto" {...props} />,
-        }}
         name="ShipTo"
         component={ShipTo}
       />
       <Stack.Screen
-        options={{
-          headerShown: true,
-          header: (props) => <Header title="Payment" {...props} />,
-          // headerTitle: 'Pyment',
-          // ({ route }) => ({ title: route.params.name }),
-        }}
         name="Payment"
         component={PaymentMethod}
       />
       <Stack.Screen
-        options={{
-          headerShown: true,
-          header: (props) => <Header title="CreditCard " {...props} />,
-          // headerTitle: 'Pyment',
-          // ({ route }) => ({ title: route.params.name }),
-        }}
         name="Credit"
         component={CreditCard}
       />
       <Stack.Screen
-        options={{
-          headerShown: true,
-          header: (props) => <Header title="AddCard " {...props} />,
-        }}
         name="AddCard"
         component={AddCard}
       />
       <Stack.Screen
-        options={{
-          headerShown: true,
-          header: (props) => <Header title="Address " {...props} />,
-        }}
         name="Address"
         component={Address}
       />
@@ -276,6 +180,61 @@ const CartStack = ({ navigation, route }) => {
   )
 }
 
+const AccountStack = ({ navigation, route }) => {
+  if (route.state && route.state.index > 0) {
+    navigation.setOptions({
+      tabBarVisible: false,
+    })
+  } else {
+    navigation.setOptions({ tabBarVisible: true })
+  }
+  return (
+    <Stack.Navigator
+      initialRouteName="AccountScreen"
+      screenOptions={{
+        headerShown: false,
+      }}
+    >
+      <Stack.Screen
+        name="AccountScreen"
+        component={AccountScreen}
+      />
+      <Stack.Screen
+        name="Profile"
+        component={Profile}
+      />
+      <Stack.Screen
+        name="ChangeName"
+        component={ChangeName}
+      />
+      <Stack.Screen
+        name="Gender"
+        component={Gender}
+      />
+      <Stack.Screen
+        name="BirthDay"
+        component={BirthDay}
+      />
+      <Stack.Screen
+        name="Email"
+        component={Email}
+      />
+      <Stack.Screen
+        name="Phone"
+        component={Phone}
+      />
+      <Stack.Screen
+        name="ChangePass"
+        component={ChangePass}
+      />
+      <Stack.Screen
+        name="Order"
+        component={Order}
+      />
+    </Stack.Navigator>
+  )
+}
+
 const App = () => {
   return (
     <NavigationContainer>
@@ -285,27 +244,51 @@ const App = () => {
           component={HomeStack}
           options={{
             tabBarIcon: ({ color }) => (
-              <Icon size={30} color={color} name="home" />
+              <Image
+                source={home}
+                style={{
+                  width: 24 * calWidth,
+                  height: 24 * calWidth,
+                  tintColor: color,
+                }}
+                resizeMode="contain"
+              />
             ),
             tabBarLabel: 'Home',
           }}
         />
         <Tab.Screen
           name="Explore"
-          component={Explore}
+          component={ExploreStack}
           options={{
             tabBarIcon: ({ color }) => (
-              <Icon size={30} color={color} name="search" />
+              <Image
+                source={search}
+                style={{
+                  width: 24 * calWidth,
+                  height: 24 * calWidth,
+                  tintColor: color,
+                }}
+                resizeMode="contain"
+              />
             ),
             tabBarLabel: 'Explore',
           }}
         />
         <Tab.Screen
-          name="Cart Screen"
+          name="CartScreen"
           component={CartStack}
           options={{
             tabBarIcon: ({ color }) => (
-              <Icon size={30} color={color} name="shopping-cart" />
+              <Image
+                source={cart}
+                style={{
+                  width: 24 * calWidth,
+                  height: 24 * calWidth,
+                  tintColor: color,
+                }}
+                resizeMode="contain"
+              />
             ),
             tabBarLabel: 'Cart',
           }}
@@ -314,8 +297,17 @@ const App = () => {
           name="OfferScreen"
           options={{
             tabBarIcon: ({ color }) => (
-              <Icon size={30} color={color} name="tag" />
+              <Image
+                source={offer}
+                style={{
+                  width: 24 * calWidth,
+                  height: 24 * calWidth,
+                  tintColor: color,
+                }}
+                resizeMode="contain"
+              />
             ),
+            tabBarLabel: 'Offer',
           }}
           component={OfferScreen}
         />
@@ -323,7 +315,15 @@ const App = () => {
           name="AccountScreen"
           options={{
             tabBarIcon: ({ color }) => (
-              <Icon size={30} color={color} name="user" />
+              <Image
+                source={user}
+                style={{
+                  width: 24 * calWidth,
+                  height: 24 * calWidth,
+                  tintColor: color,
+                }}
+                resizeMode="contain"
+              />
             ),
             tabBarLabel: 'Account',
           }}

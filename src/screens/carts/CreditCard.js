@@ -4,13 +4,17 @@ import {
 } from 'react-native'
 import { creditCard, debitCard } from '../../../assets/images'
 import { calWidth } from '../../../assets/styles'
-import { ButtonComponent } from '../../components'
+import { ButtonComponent, Header } from '../../components'
 
 const { width } = Dimensions.get('window')
 const CreditCard = (props) => {
   const [chooseCard, setChooseCard] = useState('')
+
+  const { navigation } = props
   return (
     <View style={{ flex: 1 }}>
+      <SafeAreaView />
+      <Header title="CreditCard" navigation={navigation} />
       <View style={{ alignItems: 'center', padding: 16, flex: 1 }}>
         <TouchableOpacity onPress={() => setChooseCard('creditcard')}>
           <Image source={creditCard} style={{ width: width - 32 * calWidth, marginBottom: 16 }} resizeMode="cover" />

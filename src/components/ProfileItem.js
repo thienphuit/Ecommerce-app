@@ -18,7 +18,7 @@ const ProfileItem = (props) => {
       }}
       >
         <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-          <Image source={image} style={{ width: 24 * calWidth, height: 24 * calWidth }} resizeMode="contain" />
+          <Image source={image} style={{ width: 24 * calWidth, height: 24 * calWidth, tintColor: Colors.primaryBlue }} resizeMode="contain" />
           <Text style={{ marginLeft: mainPaddingH, ...TypoGrayphy.heading6 }}>{label}</Text>
         </View>
         <View style={{ flexDirection: 'row' }}>

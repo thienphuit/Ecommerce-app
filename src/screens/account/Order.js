@@ -1,24 +1,20 @@
 import {
-  View, StyleSheet, ScrollView, SafeAreaView,
+  View, StyleSheet, SafeAreaView,
 } from 'react-native'
-import React, { useState } from 'react'
-import { CardOrder } from '../../components'
+import React from 'react'
+import { CardOrder, Header } from '../../components'
 import {
   mainPaddingH, calWidth,
 } from '../../../assets/styles'
 
-const listAddress = [
-  { id: 1, title: 'Priscekila' },
-  { id: 2, title: 'Priscekila' },
-]
 const Order = ({ navigation }) => {
-  const [indexCart, setIndexCart] = useState(0)
-  const handleFocus = (item) => {
-    setIndexCart(item.id)
-  }
+  // const handleFocus = (item) => {
+  //   setIndexCart(item.id)
+  // }
   return (
     <View style={styles.container}>
       <SafeAreaView />
+      <Header title="Order" navigation={navigation} />
       <CardOrder />
     </View>
   )

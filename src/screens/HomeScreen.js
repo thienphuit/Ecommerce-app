@@ -1,6 +1,6 @@
 import React from 'react'
 import {
-  View, StyleSheet, SafeAreaView, Image, Dimensions, FlatList, ScrollView,
+  View, StyleSheet, SafeAreaView, Dimensions, FlatList, ScrollView,
 } from 'react-native'
 
 import {
@@ -42,23 +42,19 @@ const HomeScreen = (props) => {
     <View style={styles.container}>
       <SafeAreaView />
       <HeaderComponent navigation={navigation} />
-      <View style={{ marginBottom: 16, borderTopColor: Colors.neutralLine, borderTopWidth: StyleSheet.hairlineWidth }} />
+      <View style={styles.divider} />
       <ScrollView
         showsVerticalScrollIndicator={false}
       >
         <View style={{
           flex: 1,
-
         }}
         >
           <View style={{ width, height: 260 * calWidth }}>
             <SwiperHorizontal products={products} />
           </View>
           <View>
-            <View style={{
-              flexDirection: 'row', justifyContent: 'space-between', paddingHorizontal: mainPaddingH, marginBottom: 12,
-            }}
-            >
+            <View style={styles.labelCate}>
               <Text style={{ ...TypoGrayphy.heading5 }}>Category</Text>
               <Text style={{ ...TypoGrayphy.linkLargeTextBold14 }}>More Category</Text>
             </View>
@@ -76,9 +72,9 @@ const HomeScreen = (props) => {
               />
             </View>
             <View>
-              <View style={{
-                flexDirection: 'row', justifyContent: 'space-between', paddingHorizontal: mainPaddingH, marginBottom: 12, marginTop: 24,
-              }}
+              <View style={[
+                styles.labelCate, { marginTop: 24 },
+              ]}
               >
                 <Text style={{ ...TypoGrayphy.heading5 }}>Flash Sale</Text>
                 <Text style={{ ...TypoGrayphy.linkLargeTextBold14 }}>See More</Text>
@@ -90,16 +86,22 @@ const HomeScreen = (props) => {
                   showsHorizontalScrollIndicator={false}
                   renderItem={({ item }) => {
                     return (
-                      <ProductCart item={item} handleChooseItem={() => navigation.navigate('ProductDetail')} />
+                      <ProductCart
+                        margin={calWidth * 16}
+                        item={item}
+                        handleChooseItem={() => navigation.navigate('ProductDetail', {
+                          nameProduct: 'Nike Air Max 270 Rea...',
+                        })}
+                      />
 
                     )
                   }}
                   keyExtractor={(item, index) => `Productline list ${index}`}
                 />
               </View>
-              <View style={{
-                flexDirection: 'row', justifyContent: 'space-between', paddingHorizontal: mainPaddingH, marginBottom: 12, marginTop: 24,
-              }}
+              <View style={[
+                styles.labelCate, { marginTop: 24 },
+              ]}
               >
                 <Text style={{ ...TypoGrayphy.heading5 }}>Mega Sale</Text>
                 <Text style={{ ...TypoGrayphy.linkLargeTextBold14 }}>See More</Text>
@@ -113,7 +115,10 @@ const HomeScreen = (props) => {
                     return (
                       <ProductCart
                         item={item}
-                        handleChooseItem={() => navigation.navigate('ProductDetail')}
+                        margin={calWidth * 16}
+                        handleChooseItem={() => navigation.navigate('ProductDetail', {
+                          nameProduct: 'Nike Air Max 270 Rea...',
+                        })}
                       />
 
                     )
@@ -131,51 +136,23 @@ const HomeScreen = (props) => {
                   numColumns={2}
                   renderItem={({ item }) => {
                     return (
-                      <View style={{
-                        padding: 16 * calWidth,
-                        borderColor: Colors.borderColor,
-                        borderRadius: 5 * calWidth,
-                        width: 165 * calWidth,
-                        justifyContent: 'center',
-                        borderWidth: StyleSheet.hairlineWidth,
-                      }}
-                      >
-                        <Image
-                          resizeMode="contain"
-                          source={item.image}
-                          style={{
-                            width: 133 * calWidth,
-                            height: 133 * calWidth,
-                            borderRadius: 5 * calWidth,
-                          }}
-                        />
-                        <Text style={{ ...TypoGrayphy.heading6, paddingVertical: 8 * calWidth }}>FS - Nike Air Max 270 React...</Text>
-                        <Text style={{ color: Colors.primaryBlue, ...TypoGrayphy.bodyNormalTextBold }}>$299,43</Text>
-                        <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                          <Text style={{
-                            paddingVertical: 8 * calWidth,
-                            ...TypoGrayphy.captionLargeTextRegular10,
-                            ...TypoGrayphy.captionLargeTextLine,
-                            color: Colors.neutralGrey,
-                          }}
-                          >
-                            $534,33
-                          </Text>
-                          <Text style={{
-                            color: Colors.primaryRed, marginLeft: 8, ...TypoGrayphy.captionLargeTextRegular10,
-                          }}
-                          >
-                            24% off
-                          </Text>
-                        </View>
-                      </View>
+                      <ProductCart
+                        item={item}
+                        handleChooseItem={() => navigation.navigate('ProductDetail')}
+                        style={{
+                          width: 165 * calWidth,
+                          height: 282 * calWidth,
+                          sImage: 133 * calWidth,
+                        }}
+                      />
+
                     )
                   }}
-                  keyExtractor={(item, index) => `List category ${index}`}
                   columnWrapperStyle={{
                     justifyContent: 'space-between',
-                    marginBottom: (12 / 375) * width,
+                    marginBottom: 12 * calWidth,
                   }}
+                  keyExtractor={(item, index) => `ProductLike list ${index}`}
                 />
               </View>
             </View>
@@ -190,9 +167,19 @@ const HomeScreen = (props) => {
 }
 
 const styles = StyleSheet.create({
+  labelCate: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    paddingHorizontal: mainPaddingH,
+    marginBottom: 12,
+  },
+  divider: {
+    marginBottom: 16,
+    borderTopColor: Colors.neutralLine,
+    borderTopWidth: StyleSheet.hairlineWidth,
+  },
   container: {
     flex: 1,
-
   },
   header: {
     flexDirection: 'row',

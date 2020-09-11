@@ -2,7 +2,12 @@ import React, { useState, useEffect } from 'react'
 import {
   View, StyleSheet, SafeAreaView,
 } from 'react-native'
-import { Text, ButtonComponent, TextInput } from '../../components'
+import {
+  Text,
+  ButtonComponent,
+  TextInput,
+  Header,
+} from '../../components'
 import {
   calWidth,
   Colors,
@@ -12,7 +17,7 @@ import {
   message, messageBlue,
 } from '../../../assets/images'
 
-const Email = ({ route }) => {
+const Email = ({ route, navigation }) => {
   const [value, setValue] = useState('Male')
   const [isActive, setIsActive] = useState(false)
   const handleButtonSave = () => {
@@ -34,6 +39,7 @@ const Email = ({ route }) => {
   return (
     <View style={styles.container}>
       <SafeAreaView />
+      <Header title="Name" navigation={navigation} />
       <View style={{ flex: 1, paddingHorizontal: mainPaddingH }}>
         <View>
           <TextInput

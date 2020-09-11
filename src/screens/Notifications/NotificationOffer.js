@@ -1,32 +1,38 @@
 import React from 'react'
-import { View, StyleSheet } from 'react-native'
-import { NotificationItem } from '../../components'
+import {
+  View, StyleSheet, SafeAreaView, FlatList,
+} from 'react-native'
+import { NotificationItem, Header } from '../../components'
+import { offer } from '../../../assets/images'
 
 const listItem = [
   {
     title: 'The Best Title',
     content: 'Culpa cillum consectetur labore nulla nulla magna irure. Id veniam culpa officia aute dolor amet deserunt ex proident commodo',
-    image: 'tag',
+    image: offer,
   },
   {
     title: 'SUMMER OFFER 98% Cashback',
     content: 'Culpa cillum consectetur labore nulla nulla magna irure. Id veniam culpa officia aute dolor amet deserunt ex proident commodo',
-    image: 'tag',
+    image: offer,
   },
   {
     title: 'Special Offer 25% OFF',
     content: 'Culpa cillum consectetur labore nulla nulla magna irure. Id veniam culpa officia aute dolor amet deserunt ex proident commodo',
-    image: 'tag',
+    image: offer,
   },
 ]
-const NotficationOffer = () => {
+const NotficationOffer = (props) => {
+  const { navigation } = props
   return (
     <View style={styles.container}>
-      <View>
-        <NotificationItem title={listItem[0].title} content={listItem[0].content} image={listItem[0].image} />
-        <NotificationItem title={listItem[1].title} content={listItem[1].content} image={listItem[1].image} />
-        <NotificationItem title={listItem[2].title} content={listItem[2].content} image={listItem[2].image} />
-      </View>
+      <SafeAreaView />
+      <Header title="Offer" navigation={navigation} />
+      <FlatList
+        data={listItem}
+        renderItem={({ item }) => <NotificationItem item={item} isIcon />}
+        keyExtractor={(item) => `List notift ${item.id}`}
+      />
     </View>
   )
 }

@@ -4,10 +4,12 @@ import {
 } from 'react-native'
 import Swiper from 'react-native-swiper'
 import {
-  back, search, iconMore, shoesImage, shoes_2, iconFavorite, avatar, reviews, phoduct2, productLike,
+  shoesImage, shoes_2, iconFavorite, avatar, reviews, phoduct2, productLike, plus,
 } from '../../assets/images'
 import Rating from '../components/Rating'
-import { Text, SelecColorOption, ButtonComponent } from '../components'
+import {
+  Text, SelecColorOption, ButtonComponent, Header,
+} from '../components'
 import { TypoGrayphy, Colors } from '../../assets/styles'
 import SelecSizeOption from '../components/SelecSizeOption'
 import ProductCart from '../components/ProductCart'
@@ -44,7 +46,7 @@ const nums = [
   '6', '6.5', '7', '7.5', '8', '8.5',
 ]
 
-const ProducDetail = (props) => {
+const ProducDetail = ({ navigation, route }) => {
   const [currentSize, setCurrentSize] = useState('6')
   const [currentColor, setCurrentColor] = useState(Colors.primaryYellow)
 
@@ -75,22 +77,11 @@ const ProducDetail = (props) => {
     )
   }
 
-  const { navigation } = props
+  const { nameProduct } = route.params
   return (
     <View style={styles.container}>
       <SafeAreaView />
-      <View style={styles.appBar}>
-        <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-          <TouchableOpacity onPress={() => navigation.goBack()}>
-            <Image source={back} resizeMode="contain" />
-          </TouchableOpacity>
-          <Text style={styles.titleAppbar}> Nike Air Max 270 Rea...</Text>
-        </View>
-        <View style={{ flexDirection: 'row' }}>
-          <Image source={search} style={{ width: 24 * calWidth, height: 24 * calWidth }} />
-          <Image source={iconMore} style={{ width: 24 * calWidth, height: 24 * calWidth, marginLeft: 16 * calWidth }} />
-        </View>
-      </View>
+      <Header title={nameProduct} navigation={navigation} icon={plus} />
       <ScrollView>
         <View>
           <View style={{ width, height: 260 * calWidth }}>
@@ -207,7 +198,7 @@ const ProducDetail = (props) => {
                 >
                   Review Product
                 </Text>
-                <TouchableOpacity>
+                <TouchableOpacity onPress={() => navigation.navigate('WriteReview')}>
                   <Text style={{ ...TypoGrayphy.linkLargeTextBold14 }}>See More</Text>
                 </TouchableOpacity>
               </View>
@@ -258,7 +249,7 @@ const ProducDetail = (props) => {
                 showsHorizontalScrollIndicator={false}
                 renderItem={({ item }) => {
                   return (
-                    <ProductCart item={item} />
+                    <ProductCart item={item} margin={calWidth * 16} />
 
                   )
                 }}

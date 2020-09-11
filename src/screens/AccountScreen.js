@@ -9,7 +9,9 @@ import {
   mainPaddingH,
   TypoGrayphy,
 } from '../../assets/styles'
-import { userBlue, bag } from '../../assets/images'
+import {
+  userBlue, bag, location, card,
+} from '../../assets/images'
 
 const AccountScreen = ({ navigation }) => {
   console.tron.log({ navigation })
@@ -24,28 +26,28 @@ const AccountScreen = ({ navigation }) => {
       >
         <Text style={styles.headerTitle}>Account</Text>
       </View>
-      <View style={{ flex: 1, paddingHorizontal: mainPaddingH }}>
+      <View style={{ flex: 1 }}>
         <TouchableOpacity onPress={() => navigation.navigate('Profile')}>
           <View style={styles.acountView}>
-            <Image source={userBlue} />
+            <Image source={userBlue} style={styles.image} resizeMode="contain" />
             <Text style={styles.title}>Profile</Text>
           </View>
         </TouchableOpacity>
         <TouchableOpacity onPress={() => navigation.navigate('Order')}>
           <View style={styles.acountView}>
-            <Image source={bag} />
+            <Image source={bag} style={styles.image} resizeMode="contain" />
             <Text style={styles.title}>Other</Text>
           </View>
         </TouchableOpacity>
         <TouchableOpacity onPress={() => navigation.navigate('ShipTo')}>
           <View style={styles.acountView}>
-            <Image source={userBlue} />
+            <Image source={location} style={styles.image} resizeMode="contain" />
             <Text style={styles.title}>Address</Text>
           </View>
         </TouchableOpacity>
         <TouchableOpacity>
           <View style={styles.acountView}>
-            <Image source={userBlue} />
+            <Image source={card} style={styles.image} resizeMode="contain" />
             <Text style={styles.title}>Payment</Text>
           </View>
         </TouchableOpacity>
@@ -70,6 +72,11 @@ const styles = StyleSheet.create({
   title: {
     ...TypoGrayphy.heading6,
     marginLeft: mainPaddingH,
+  },
+  image: {
+    width: 24 * calWidth,
+    height: 24 * calWidth,
+    tintColor: Colors.primaryBlue,
   },
 })
 

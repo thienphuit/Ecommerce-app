@@ -3,15 +3,17 @@ import {
   View, TextInput, SafeAreaView, StyleSheet, ScrollView,
 } from 'react-native'
 
-import { Text, ButtonComponent } from '../../components'
+import { Text, ButtonComponent, Header } from '../../components'
 import {
   TypoGrayphy, Colors, mainPaddingH, calWidth,
 } from '../../../assets/styles'
 
-const AddCard = () => {
-  // const { card } = route.params
+const AddCard = (props) => {
+  const { navigation } = props
   return (
     <View style={styles.container}>
+      <SafeAreaView />
+      <Header title="AddCard" navigation={navigation} />
       <ScrollView>
         <View style={{ flex: 1, paddingHorizontal: mainPaddingH }}>
           <View style={{ marginTop: mainPaddingH }}>

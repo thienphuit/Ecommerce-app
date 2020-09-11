@@ -4,7 +4,7 @@ import {
 } from 'react-native'
 import { Calendar } from 'react-native-calendars'
 import moment from 'moment'
-import { Text, ButtonComponent } from '../../components'
+import { Text, ButtonComponent, Header } from '../../components'
 import {
   calWidth,
   Colors,
@@ -13,7 +13,7 @@ import {
 } from '../../../assets/styles'
 import { bottomIcon } from '../../../assets/images'
 
-const BirthDay = ({ route }) => {
+const BirthDay = ({ route, navigation }) => {
   // const [selectedValue, setSelectedValue] = useState('2020-02-02')
   const [showView, setShowView] = useState(false)
   const [selected, setSelected] = useState(date)
@@ -31,22 +31,22 @@ const BirthDay = ({ route }) => {
   const handleShowList = () => {
     setShowView(!showView)
   }
-  const handleFame = (item) => {
-    setSelectedValue(item.tilte)
-    setShowView(!showView)
-  }
   const { date } = route.params
   const formatTime = moment(selected).format('DD/MM/YYYY')
   return (
     <View style={styles.container}>
       <SafeAreaView />
+      <Header title="BirthDay" navigation={navigation} />
       <View style={{ flex: 1, paddingHorizontal: mainPaddingH }}>
         <View style={{ marginTop: mainPaddingH }}>
           <Text style={{ ...TypoGrayphy.heading5 }}>Your BirthDay</Text>
           <TouchableOpacity onPress={handleShowList}>
             <View style={[styles.picker, { borderColor: showView ? Colors.primaryBlue : Colors.neutralLine }]}>
               <Text>{formatTime}</Text>
-              <Image source={bottomIcon} style={{ width: 24 * calWidth, height: 24 * calWidth }} />
+              <Image
+                source={bottomIcon}
+                style={{ width: 24 * calWidth, height: 24 * calWidth }}
+              />
             </View>
           </TouchableOpacity>
           {showView ? <Calendar

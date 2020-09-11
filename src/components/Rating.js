@@ -2,6 +2,7 @@ import React from 'react'
 import {
   View, StyleSheet, Image,
 } from 'react-native'
+import PropTypes from 'prop-types'
 import { star, starActive } from '../../assets/images'
 
 const Rating = ({ rating }) => {
@@ -11,8 +12,8 @@ const Rating = ({ rating }) => {
 
   return (
     <View style={styles.rating}>
-      {r.map((type, index) => {
-        return <View key={`List key ${index}`}>{type === 'star' ? <Image source={star} size={12} /> : <Image source={starActive} size={12} />}</View>
+      {r.map((type) => {
+        return <View key={Math.random()}>{type === 'star' ? <Image source={star} size={12} /> : <Image source={starActive} size={12} />}</View>
       })}
     </View>
   )
@@ -22,9 +23,10 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     marginTop: 8,
     marginBottom: 16,
-    // alignItems: 'center',
-    // justifyContent: 'center',
     marginVertical: 4,
   },
 })
+Rating.propTypes = {
+  rating: PropTypes.string.isRequired,
+}
 export default Rating

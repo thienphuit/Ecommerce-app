@@ -1,23 +1,23 @@
 import React from 'react'
 import { View, StyleSheet, Image } from 'react-native'
 import PropTypes from 'prop-types'
-import Icon from 'react-native-vector-icons/FontAwesome'
 import Text from './Text'
 import {
   Colors, TypoGrayphy, calWidth,
 } from '../../assets/styles'
 
 const NotificationItem = (props) => {
-  const { title, content, image } = props
-  console.tron.log({ image })
+  const {
+    isIcon, item,
+  } = props
   return (
     <View style={styles.container}>
-      {(typeof image === 'string' || image instanceof String) ? <Icon name={image} size={24 * calWidth} color={Colors.primaryBlue} />
-        : <Image source={image} style={{ width: 48 * calWidth, height: 48 * calWidth }} />}
+      {isIcon ? <Image source={item.image} style={{ width: 24 * calWidth, height: 24 * calWidth, tintColor: Colors.primaryBlue }} resizeMode="contain" />
+        : <Image source={item.image} style={{ width: 48 * calWidth, height: 48 * calWidth }} resizeMode="contain" />}
       <View style={{ marginLeft: 12 * calWidth }}>
-        <Text style={{ ...TypoGrayphy.heading5 }}>{title}</Text>
+        <Text style={{ ...TypoGrayphy.heading5 }}>{item.title}</Text>
         <Text style={{ color: Colors.neutralGrey }}>
-          {content}
+          {item.content}
         </Text>
         <Text style={{ ...TypoGrayphy.captionLargeTextRegular10 }}>April 30, 2014 1:01 PM</Text>
       </View>

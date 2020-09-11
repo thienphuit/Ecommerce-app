@@ -1,7 +1,9 @@
 import React, { useState } from 'react'
-import { View, Image, TouchableOpacity } from 'react-native'
+import {
+  View, Image, TouchableOpacity, SafeAreaView,
+} from 'react-native'
 
-import { Text } from '../../components'
+import { Text, Header } from '../../components'
 import { love_24 } from '../../../assets/images'
 import { TypoGrayphy, Colors } from '../../../assets/styles'
 
@@ -32,13 +34,16 @@ const PaymentMethod = (props) => {
         console.log('============================')
     }
   }
+  const { navigation } = props
   return (
     <View>
+      <SafeAreaView />
+      <Header title="Payment" navigation={navigation} />
       {listBank.map((item) => {
         return (
-          <TouchableOpacity onPress={() => handleChoose(item)}>
+          <TouchableOpacity onPress={() => handleChoose(item)} key={`List idnex ${item.id}`}>
             <View
-              key={`List idnex ${item.id}`}
+
               style={{
                 padding: 16,
                 flexDirection: 'row',

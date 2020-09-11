@@ -2,7 +2,9 @@ import React, { useState } from 'react'
 import {
   View, StyleSheet, SafeAreaView,
 } from 'react-native'
-import { Text, ButtonComponent, PickerComponent } from '../../components'
+import {
+  Text, ButtonComponent, PickerComponent, Header,
+} from '../../components'
 import {
   calWidth,
   Colors,
@@ -15,7 +17,7 @@ const listGender = [
   { id: 2, tilte: 'Female' },
   { id: 3, tilte: 'Other' },
 ]
-const Gender = () => {
+const Gender = (props) => {
   const [selectedValue, setSelectedValue] = useState('Male')
   const [showView, setShowView] = useState(false)
   const handleButtonSave = () => {
@@ -29,9 +31,11 @@ const Gender = () => {
     setShowView(!showView)
   }
 
+  const { navigation } = props
   return (
     <View style={styles.container}>
       <SafeAreaView />
+      <Header title="Gender" navigation={navigation} />
       <View style={{ flex: 1, paddingHorizontal: mainPaddingH }}>
         <View style={{ marginTop: mainPaddingH }}>
           <Text style={{ ...TypoGrayphy.heading5 }}>Choose gender</Text>
