@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import {
   View, TouchableOpacity, Image, StyleSheet,
 } from 'react-native'
@@ -8,7 +8,6 @@ import { plus_16, minus_16 } from '../../assets/images'
 import Text from './Text'
 
 const InputNumber = () => {
-  const [number, setNumber] = useState(1)
   return (
     <View style={{
       width: 104 * calWidth,
@@ -30,7 +29,7 @@ const InputNumber = () => {
         backgroundColor: Colors.neutralLine, width: 40 * calWidth, height: 24 * calWidth, justifyContent: 'center', alignItems: 'center',
       }}
       >
-        <Text>{number}</Text>
+        <Text>1</Text>
       </View>
       <TouchableOpacity>
         <View style={{ justifyContent: 'center', alignItems: 'center', padding: 8 * calWidth }}>

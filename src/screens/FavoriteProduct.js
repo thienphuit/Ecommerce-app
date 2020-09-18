@@ -1,23 +1,21 @@
 import React from 'react'
+import { useSelector } from 'react-redux'
 import {
   View, StyleSheet, SafeAreaView, FlatList,
 } from 'react-native'
 import { Header, ProductCart } from '../components'
-import { productLike, shoes_2, phoduct2 } from '../../assets/images'
 import { calWidth } from '../../assets/styles'
+import { Screen } from '../constants'
 
-const productLikes = [
-  { image: productLike },
-  { image: shoes_2 },
-  { image: phoduct2 },
-]
 const FavoriteProduct = (props) => {
   const { navigation } = props
+
+  const productLikes = useSelector((state) => state.products.productLikes)
   return (
     <View style={styles.container}>
       <SafeAreaView />
-      <Header title="Favorite" navigation={navigation} />
-      <View style={{ marginHorizontal: 16, marginTop: 16 }}>
+      <Header title={Screen.Favorite} navigation={navigation} />
+      <View style={styles.viewFlatlist}>
         <FlatList
           data={productLikes}
           numColumns={2}
@@ -25,18 +23,19 @@ const FavoriteProduct = (props) => {
             return (
               <ProductCart
                 item={item}
-                handleChooseItem={() => navigation.navigate('ProductDetail')}
+                handleChooseItem={() => navigation.navigate(Screen.ProductDetail, {
+                  nameProduct: item.title,
+                })}
                 style={{
-                  width: 165 * calWidth, height: 282 * calWidth, sImage: 133 * calWidth,
+                  width: 165 * calWidth,
+                  height: 282 * calWidth,
+                  sImage: 133 * calWidth,
                 }}
               />
 
             )
           }}
-          columnWrapperStyle={{
-            justifyContent: 'space-between',
-            marginBottom: 12 * calWidth,
-          }}
+          columnWrapperStyle={styles.conlumnWrapper}
           keyExtractor={(item, index) => `ProductLike list ${index}`}
         />
       </View>
@@ -45,8 +44,15 @@ const FavoriteProduct = (props) => {
 }
 
 const styles = StyleSheet.create({
+  conlumnWrapper: {
+    justifyContent: 'space-between',
+    marginBottom: 12 * calWidth,
+  },
   container: {
     flex: 1,
+  },
+  viewFlatlist: {
+    marginHorizontal: 16, marginTop: 16,
   },
 })
 export default FavoriteProduct

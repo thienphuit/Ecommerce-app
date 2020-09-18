@@ -1,4 +1,5 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { useSelector } from 'react-redux'
 import {
   View, StyleSheet, SafeAreaView, Dimensions, FlatList, ScrollView,
 } from 'react-native'
@@ -9,54 +10,37 @@ import {
 import {
   Colors, TypoGrayphy, mainPaddingH, calWidth,
 } from '../../assets/styles'
-import {
-  shirt, shoesImage, shoes_2, promotionImage, tshirt, womanBag, dress,
-  womanShoes, productLike, phoduct2,
-} from '../../assets/images'
+import { promotionImage } from '../../assets/images'
 import CategoryItem from '../components/CategoryItem'
+import { Screen } from '../constants/index'
 
 const { width } = Dimensions.get('window')
-const products = [
-  { image: promotionImage },
-  { image: shoes_2 },
-  { image: shoesImage },
-]
-const categoryList = [
-  { image: shirt, title: 'Man shirt' },
-  { image: dress, title: 'Dress' },
-  { image: womanBag, title: 'Women Bag' },
-  { image: womanShoes, title: 'Woman Shoest' },
-  { image: tshirt, title: 'Man shirt' },
-  { image: tshirt, title: 'Man shirt' },
-]
-const productLikes = [
-  { image: productLike },
-  { image: shoes_2 },
-  { image: phoduct2 },
-]
 
 const HomeScreen = (props) => {
   const { navigation } = props
-
+  const [onFocus, setOnFocus] = useState(false)
+  const handleFocus = () => {
+    setOnFocus(true)
+  }
+  const productLikes = useSelector((state) => state.products.productLikes)
+  const categoryList = useSelector((state) => state.products.categorys)
+  const swipperList = useSelector((state) => state.products.swipperList)
   return (
     <View style={styles.container}>
       <SafeAreaView />
-      <HeaderComponent navigation={navigation} />
+      <HeaderComponent navigation={navigation} handleFocus={handleFocus} onFocus={onFocus} />
       <View style={styles.divider} />
       <ScrollView
         showsVerticalScrollIndicator={false}
       >
-        <View style={{
-          flex: 1,
-        }}
-        >
-          <View style={{ width, height: 260 * calWidth }}>
-            <SwiperHorizontal products={products} />
+        <View style={styles.container}>
+          <View style={styles.swipperWrapper}>
+            <SwiperHorizontal products={swipperList} handleChooseSwipper={() => navigation.navigate(Screen.SubperSale)} />
           </View>
           <View>
             <View style={styles.labelCate}>
-              <Text style={{ ...TypoGrayphy.heading5 }}>Category</Text>
-              <Text style={{ ...TypoGrayphy.linkLargeTextBold14 }}>More Category</Text>
+              <Text style={styles.titleCategory}>Category</Text>
+              <Text style={styles.moreCategory}>More Category</Text>
             </View>
             <View>
               <FlatList
@@ -72,14 +56,11 @@ const HomeScreen = (props) => {
               />
             </View>
             <View>
-              <View style={[
-                styles.labelCate, { marginTop: 24 },
-              ]}
-              >
-                <Text style={{ ...TypoGrayphy.heading5 }}>Flash Sale</Text>
-                <Text style={{ ...TypoGrayphy.linkLargeTextBold14 }}>See More</Text>
+              <View style={[styles.labelCate, { marginTop: 24 }]}>
+                <Text style={styles.titleCategory}>Flash Sale</Text>
+                <Text style={styles.moreCategory}>See More</Text>
               </View>
-              <View style={{ marginLeft: 16 * calWidth }}>
+              <View style={{ marginLeft: mainPaddingH }}>
                 <FlatList
                   data={productLikes}
                   horizontal
@@ -87,26 +68,22 @@ const HomeScreen = (props) => {
                   renderItem={({ item }) => {
                     return (
                       <ProductCart
-                        margin={calWidth * 16}
+                        margin={mainPaddingH}
                         item={item}
-                        handleChooseItem={() => navigation.navigate('ProductDetail', {
+                        handleChooseItem={() => navigation.navigate(Screen.ProductDetail, {
                           nameProduct: 'Nike Air Max 270 Rea...',
                         })}
                       />
-
                     )
                   }}
                   keyExtractor={(item, index) => `Productline list ${index}`}
                 />
               </View>
-              <View style={[
-                styles.labelCate, { marginTop: 24 },
-              ]}
-              >
-                <Text style={{ ...TypoGrayphy.heading5 }}>Mega Sale</Text>
-                <Text style={{ ...TypoGrayphy.linkLargeTextBold14 }}>See More</Text>
+              <View style={[styles.labelCate, { marginTop: 24 }]}>
+                <Text style={styles.titleCategory}>Mega Sale</Text>
+                <Text style={styles.moreCategory}>See More</Text>
               </View>
-              <View style={{ marginLeft: 16 * calWidth }}>
+              <View style={{ marginLeft: mainPaddingH }}>
                 <FlatList
                   data={productLikes}
                   horizontal
@@ -115,19 +92,17 @@ const HomeScreen = (props) => {
                     return (
                       <ProductCart
                         item={item}
-                        margin={calWidth * 16}
-                        handleChooseItem={() => navigation.navigate('ProductDetail', {
+                        margin={mainPaddingH}
+                        handleChooseItem={() => navigation.navigate(Screen.ProductDetail, {
                           nameProduct: 'Nike Air Max 270 Rea...',
                         })}
                       />
-
                     )
                   }}
                   keyExtractor={(item, index) => `List product -${index}`}
                 />
               </View>
-              {/*   */}
-              <View style={{ marginHorizontal: 16 * calWidth }}>
+              <View style={{ marginHorizontal: mainPaddingH }}>
                 <SaleOffComponent content="We recomended the best for you" image={promotionImage} topic="Recomended Product" />
               </View>
               <View style={{ paddingTop: mainPaddingH, paddingHorizontal: mainPaddingH }}>
@@ -138,7 +113,7 @@ const HomeScreen = (props) => {
                     return (
                       <ProductCart
                         item={item}
-                        handleChooseItem={() => navigation.navigate('ProductDetail')}
+                        handleChooseItem={() => navigation.navigate(Screen.ProductDetail, { nameProduct: 'Nike Air Max 270 Rea...' })}
                         style={{
                           width: 165 * calWidth,
                           height: 282 * calWidth,
@@ -167,14 +142,19 @@ const HomeScreen = (props) => {
 }
 
 const styles = StyleSheet.create({
+  moreCategory: { ...TypoGrayphy.linkLargeTextBold14 },
+  titleCategory: { ...TypoGrayphy.heading5 },
+  swipperWrapper: {
+    width, height: 260 * calWidth,
+  },
   labelCate: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     paddingHorizontal: mainPaddingH,
-    marginBottom: 12,
+    marginBottom: 12 * calWidth,
   },
   divider: {
-    marginBottom: 16,
+    marginBottom: 16 * calWidth,
     borderTopColor: Colors.neutralLine,
     borderTopWidth: StyleSheet.hairlineWidth,
   },

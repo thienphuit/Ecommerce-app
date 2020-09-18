@@ -11,46 +11,64 @@ import Text from './Text'
 
 const Header = (props) => {
   const {
-    navigation, title, icon, iconSearch,
+    navigation, title, icon, iconRight,
   } = props
   return (
     <View>
       <SafeAreaView />
-      <View style={{
-        paddingVertical: 26 * calWidth,
-        borderBottomWidth: StyleSheet.hairlineWidth,
-        borderBottomColor: Colors.borderColor,
-      }}
-      >
-        <View style={{
-          flexDirection: 'row', marginHorizontal: mainPaddingH, alignItems: 'center', justifyContent: 'space-between',
-        }}
-        >
-
+      <View style={styles.containerBorder}>
+        <View style={styles.backgroundInput}>
           <TouchableOpacity onPress={() => navigation.goBack()}>
-            <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-              <Image source={back} resizeMode="contain" />
-              <Text style={{ ...TypoGrayphy.heading4, marginLeft: 12 * calWidth }}>{title}</Text>
+            <View style={styles.titleViewRow}>
+              <Image source={back} resizeMode="contain" style={styles.imageBack} />
+              <Text style={styles.title}>{title}</Text>
             </View>
           </TouchableOpacity>
           <View style={{ flexDirection: 'row' }}>
-            <Image source={icon} style={{ width: 24 * calWidth, hieght: 24 * calWidth, tintColor: Colors.primaryBlue }} resizeMode="contain" />
-            {iconSearch && iconSearch ? <Image
-              source={iconSearch}
-              style={{
-                width: 24 * calWidth,
-                hieght: 24 * calWidth,
-                paddingHorizontal: mainPaddingH,
-              }}
+            <Image source={icon} style={styles.icon} resizeMode="contain" />
+            {iconRight && iconRight ? <Image
+              source={iconRight}
+              style={styles.iconRight}
               resizeMode="contain"
             /> : null}
           </View>
-
         </View>
       </View>
     </View>
   )
 }
+const styles = StyleSheet.create({
+  iconRight: {
+    width: 24 * calWidth,
+    height: 24 * calWidth,
+    paddingHorizontal: mainPaddingH,
+  },
+  icon: {
+    width: 24 * calWidth,
+    height: 24 * calWidth,
+    tintColor: Colors.primaryBlue,
+  },
+  title: {
+    ...TypoGrayphy.heading4, marginLeft: 12 * calWidth,
+  },
+  titleViewRow: {
+    flexDirection: 'row', alignItems: 'center',
+  },
+  imageBack: {
+    width: mainPaddingH, height: mainPaddingH,
+  },
+  containerBorder: {
+    paddingVertical: 26 * calWidth,
+    borderBottomWidth: StyleSheet.hairlineWidth,
+    borderBottomColor: Colors.borderColor,
+  },
+  backgroundInput: {
+    flexDirection: 'row',
+    marginHorizontal: mainPaddingH,
+    alignItems: 'center',
+    justifyContent: 'space-between',
+  },
+})
 
 Header.propTyles = {
   title: PropTyles.string.isRequired,

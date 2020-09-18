@@ -12,8 +12,14 @@ import { NavigationContainer } from '@react-navigation/native'
 import { createStackNavigator } from '@react-navigation/stack'
 
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
+import { Provider } from 'react-redux'
 import {
-  HomeScreen, AccountScreen, ProductDetail, OfferScreen, FavoriteProduct, WriteReview,
+  HomeScreen,
+  AccountScreen,
+  ProductDetail,
+  OfferScreen,
+  FavoriteProduct,
+  WriteReview,
 } from './src/screens'
 import {
   Notification,
@@ -31,7 +37,7 @@ import {
   ChangePass,
   Order,
 } from './src/screens/account'
-import { Explore } from './src/screens/explore'
+import { Explore, SearchScreen } from './src/screens/explore'
 import {
   CartScreen,
   ShipTo,
@@ -49,6 +55,9 @@ import {
   user,
 } from './assets/images'
 import { calWidth } from './assets/styles'
+import { store } from './src/redux/index'
+import { SupperFlashSale } from './src/screens/home'
+import { Screen } from './src/constants'
 
 const Stack = createStackNavigator()
 const Tab = createBottomTabNavigator()
@@ -66,43 +75,52 @@ const HomeStack = ({ navigation, route }) => {
       }}
     >
       <Stack.Screen
-        name="HomeScreen"
+        name={Screen.HomeScreen}
         component={HomeScreen}
       />
       <Stack.Screen
-        name="Notification"
+        name={Screen.Notification}
         component={Notification}
       />
       <Stack.Screen
-        name="NotificationOffer"
+        name={Screen.NotificationOffer}
         component={NotificationOffer}
       />
       <Stack.Screen
-        name="NotificationFeed"
+        name={Screen.NotificationFeed}
         component={NotificationFeed}
       />
       <Stack.Screen
-        name="NotificationActivity"
+        name={Screen.NotificationActivity}
         component={NotificationActivity}
       />
       <Stack.Screen
-        name="ProductDetail"
+        name={Screen.ProductDetail}
         component={ProductDetail}
       />
       <Stack.Screen
-        name="Favorite"
+        name={Screen.Favorite}
         component={FavoriteProduct}
       />
       <Stack.Screen
-        name="WriteReview"
+        name={Screen.WriteReview}
         component={WriteReview}
+      />
+      <Stack.Screen
+        name={Screen.SubperSale}
+        component={SupperFlashSale}
       />
 
     </Stack.Navigator>
   )
 }
 
-const ExploreStack = () => {
+const ExploreStack = ({ navigation, route }) => {
+  if (route.state && route.state.index > 0) {
+    navigation.setOptions({ tabBarVisible: false })
+  } else {
+    navigation.setOptions({ tabBarVisible: true })
+  }
   return (
     <Stack.Navigator
       screenOptions={{
@@ -110,24 +128,32 @@ const ExploreStack = () => {
       }}
     >
       <Stack.Screen
-        name="Explore"
+        name={Screen.Explore}
         component={Explore}
       />
       <Stack.Screen
-        name="Notification"
+        name={Screen.Notification}
         component={Notification}
       />
       <Stack.Screen
-        name="NotificationOffer"
+        name={Screen.NotificationOffer}
         component={NotificationOffer}
       />
       <Stack.Screen
-        name="NotificationFeed"
+        name={Screen.NotificationFeed}
         component={NotificationFeed}
       />
       <Stack.Screen
-        name="NotificationActivity"
+        name={Screen.NotificationActivity}
         component={NotificationActivity}
+      />
+      <Stack.Screen
+        name={Screen.SearchScreen}
+        component={SearchScreen}
+      />
+      <Stack.Screen
+        name={Screen.ProductDetail}
+        component={ProductDetail}
       />
     </Stack.Navigator>
   )
@@ -169,12 +195,12 @@ const CartStack = ({ navigation, route }) => {
         component={Address}
       />
       <Stack.Screen
-        options={{
-          headerShown: false,
-          // header: (props) => <Header title="Delete Address" {...props} />,
-        }}
         name="DeleteAddress"
         component={DeleteAddress}
+      />
+      <Stack.Screen
+        name={Screen.ProductDetail}
+        component={ProductDetail}
       />
     </Stack.Navigator>
   )
@@ -237,101 +263,103 @@ const AccountStack = ({ navigation, route }) => {
 
 const App = () => {
   return (
-    <NavigationContainer>
-      <Tab.Navigator>
-        <Tab.Screen
-          name="HomeScreen"
-          component={HomeStack}
-          options={{
-            tabBarIcon: ({ color }) => (
-              <Image
-                source={home}
-                style={{
-                  width: 24 * calWidth,
-                  height: 24 * calWidth,
-                  tintColor: color,
-                }}
-                resizeMode="contain"
-              />
-            ),
-            tabBarLabel: 'Home',
-          }}
-        />
-        <Tab.Screen
-          name="Explore"
-          component={ExploreStack}
-          options={{
-            tabBarIcon: ({ color }) => (
-              <Image
-                source={search}
-                style={{
-                  width: 24 * calWidth,
-                  height: 24 * calWidth,
-                  tintColor: color,
-                }}
-                resizeMode="contain"
-              />
-            ),
-            tabBarLabel: 'Explore',
-          }}
-        />
-        <Tab.Screen
-          name="CartScreen"
-          component={CartStack}
-          options={{
-            tabBarIcon: ({ color }) => (
-              <Image
-                source={cart}
-                style={{
-                  width: 24 * calWidth,
-                  height: 24 * calWidth,
-                  tintColor: color,
-                }}
-                resizeMode="contain"
-              />
-            ),
-            tabBarLabel: 'Cart',
-          }}
-        />
-        <Tab.Screen
-          name="OfferScreen"
-          options={{
-            tabBarIcon: ({ color }) => (
-              <Image
-                source={offer}
-                style={{
-                  width: 24 * calWidth,
-                  height: 24 * calWidth,
-                  tintColor: color,
-                }}
-                resizeMode="contain"
-              />
-            ),
-            tabBarLabel: 'Offer',
-          }}
-          component={OfferScreen}
-        />
-        <Tab.Screen
-          name="AccountScreen"
-          options={{
-            tabBarIcon: ({ color }) => (
-              <Image
-                source={user}
-                style={{
-                  width: 24 * calWidth,
-                  height: 24 * calWidth,
-                  tintColor: color,
-                }}
-                resizeMode="contain"
-              />
-            ),
-            tabBarLabel: 'Account',
-          }}
-          component={AccountStack}
-        />
-      </Tab.Navigator>
+    <Provider store={store}>
+      <NavigationContainer>
+        <Tab.Navigator>
+          <Tab.Screen
+            name="HomeScreen"
+            component={HomeStack}
+            options={{
+              tabBarIcon: ({ color }) => (
+                <Image
+                  source={home}
+                  style={{
+                    width: 24 * calWidth,
+                    height: 24 * calWidth,
+                    tintColor: color,
+                  }}
+                  resizeMode="contain"
+                />
+              ),
+              tabBarLabel: 'Home',
+            }}
+          />
+          <Tab.Screen
+            name="Explore"
+            component={ExploreStack}
+            options={{
+              tabBarIcon: ({ color }) => (
+                <Image
+                  source={search}
+                  style={{
+                    width: 24 * calWidth,
+                    height: 24 * calWidth,
+                    tintColor: color,
+                  }}
+                  resizeMode="contain"
+                />
+              ),
+              tabBarLabel: 'Explore',
+            }}
+          />
+          <Tab.Screen
+            name="CartScreen"
+            component={CartStack}
+            options={{
+              tabBarIcon: ({ color }) => (
+                <Image
+                  source={cart}
+                  style={{
+                    width: 24 * calWidth,
+                    height: 24 * calWidth,
+                    tintColor: color,
+                  }}
+                  resizeMode="contain"
+                />
+              ),
+              tabBarLabel: 'Cart',
+            }}
+          />
+          <Tab.Screen
+            name="OfferScreen"
+            options={{
+              tabBarIcon: ({ color }) => (
+                <Image
+                  source={offer}
+                  style={{
+                    width: 24 * calWidth,
+                    height: 24 * calWidth,
+                    tintColor: color,
+                  }}
+                  resizeMode="contain"
+                />
+              ),
+              tabBarLabel: 'Offer',
+            }}
+            component={OfferScreen}
+          />
+          <Tab.Screen
+            name="AccountScreen"
+            options={{
+              tabBarIcon: ({ color }) => (
+                <Image
+                  source={user}
+                  style={{
+                    width: 24 * calWidth,
+                    height: 24 * calWidth,
+                    tintColor: color,
+                  }}
+                  resizeMode="contain"
+                />
+              ),
+              tabBarLabel: 'Account',
+            }}
+            component={AccountStack}
+          />
+        </Tab.Navigator>
 
-    </NavigationContainer>
+      </NavigationContainer>
+    </Provider>
   )
 }
 

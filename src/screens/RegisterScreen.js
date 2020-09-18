@@ -4,7 +4,7 @@ import {
 } from 'react-native'
 import { Text, Button } from '../components'
 import {
-  logoWhite, message, password,
+  logoWhite, message, passIcon,
 } from '../../assets/images'
 import {
   TypoGrayphy, mainPaddingH, Colors, calWidth,
@@ -18,11 +18,24 @@ const RegisterScreen = () => {
       <View style={styles.container}>
         <SafeAreaView />
         <View style={{ alignItems: 'center' }}>
-          <Image source={logoWhite} style={{ width: 72 * calWidth, height: 72 * calWidth, marginTop: 68 * calWidth }} />
+          <Image
+            source={logoWhite}
+            style={{
+              width: 72 * calWidth,
+              height: 72 * calWidth,
+              marginTop: 68 * calWidth,
+            }}
+          />
           <Text style={{ ...TypoGrayphy.heading4, marginTop: mainPaddingH }}>Let’s Get Started</Text>
           <Text style={{ marginTop: mainPaddingH / 2 }}>Create an new account</Text>
         </View>
-        <View style={{ marginTop: 28 * calWidth, width, paddingHorizontal: mainPaddingH }}>
+        <View
+          style={{
+            marginTop: 28 * calWidth,
+            width,
+            paddingHorizontal: mainPaddingH,
+          }}
+        >
           <View style={{
             borderRadius: 5 * calWidth,
             flexDirection: 'row',
@@ -35,7 +48,10 @@ const RegisterScreen = () => {
             <Image
               source={message}
               style={{
-                width: 24 * calWidth, height: 24 * calWidth, paddingLeft: 4 * calWidth, marginRight: 10 * calWidth,
+                width: 24 * calWidth,
+                height: 24 * calWidth,
+                paddingLeft: 4 * calWidth,
+                marginRight: 10 * calWidth,
               }}
               resizeMode="contain"
             />
@@ -54,7 +70,10 @@ const RegisterScreen = () => {
             <Image
               source={message}
               style={{
-                width: 24 * calWidth, height: 24 * calWidth, paddingLeft: 4 * calWidth, marginRight: 10 * calWidth,
+                width: 24 * calWidth,
+                height: 24 * calWidth,
+                paddingLeft: 4 * calWidth,
+                marginRight: 10 * calWidth,
               }}
               resizeMode="contain"
             />
@@ -71,9 +90,12 @@ const RegisterScreen = () => {
           }}
           >
             <Image
-              source={password}
+              source={passIcon}
               style={{
-                width: 24 * calWidth, height: 24 * calWidth, paddingLeft: 4 * calWidth, marginRight: 10 * calWidth,
+                width: 24 * calWidth,
+                height: 24 * calWidth,
+                paddingLeft: 4 * calWidth,
+                marginRight: 10 * calWidth,
               }}
               resizeMode="contain"
             />
@@ -90,9 +112,12 @@ const RegisterScreen = () => {
           }}
           >
             <Image
-              source={password}
+              source={passIcon}
               style={{
-                width: 24 * calWidth, height: 24 * calWidth, paddingLeft: 4 * calWidth, marginRight: 10 * calWidth,
+                width: 24 * calWidth,
+                height: 24 * calWidth,
+                paddingLeft: 4 * calWidth,
+                marginRight: 10 * calWidth,
               }}
               resizeMode="contain"
             />
@@ -104,7 +129,10 @@ const RegisterScreen = () => {
             </Button>
           </View>
           <View style={{
-            flexDirection: 'row', marginTop: 24 * calWidth, justifyContent: 'center', marginBottom: 20 * calWidth,
+            flexDirection: 'row',
+            marginTop: 24 * calWidth,
+            justifyContent: 'center',
+            marginBottom: 20 * calWidth,
           }}
           >
             <Text style={{ ...TypoGrayphy.captionLargeTextBold12, color: Colors.neutralGrey }}>Have a account?</Text>

@@ -3,6 +3,7 @@ import {
   View, StyleSheet, Image, Dimensions, FlatList, ScrollView, TouchableOpacity, SafeAreaView, Alert,
 } from 'react-native'
 import Swiper from 'react-native-swiper'
+import PropTypes from 'prop-types'
 import {
   shoesImage, shoes_2, iconFavorite, avatar, reviews, phoduct2, productLike, plus,
 } from '../../assets/images'
@@ -330,4 +331,7 @@ const styles = StyleSheet.create({
   },
 })
 
+ProducDetail.propTypes = {
+  nameProduct: PropTypes.string.isRequired,
+}
 export default ProducDetail

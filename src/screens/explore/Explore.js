@@ -1,7 +1,8 @@
-import React from 'react'
+import React, { useState } from 'react'
 import {
   View, StyleSheet, SafeAreaView, FlatList,
 } from 'react-native'
+import { useSelector, useDispatch } from 'react-redux'
 import PropTypes from 'prop-types'
 import {
   shirt, dress, womanBag, womanShoes, tshirt,
@@ -20,13 +21,28 @@ const categoryList = [
   { image: tshirt, title: 'Man shirt' },
 ]
 const Explore = (props) => {
-  const {
-    navigation,
-  } = props
+  const [onFocus, setOnFocus] = useState(false)
+
+  const handleFocus = () => {
+    setOnFocus(true)
+  }
+  const handleClick = () => {
+    navigation.navigate('SearchScreen')
+  }
+  const { navigation } = props
+  const listSearch = useSelector((state) => state.listSearch)
+  console.log('============================')
+  console.log('listSearch', listSearch)
+  console.log('============================')
   return (
     <View style={styles.container}>
       <SafeAreaView />
-      <HeaderComponent navigation={navigation} />
+      <HeaderComponent
+        navigation={navigation}
+        handleFocus={handleFocus}
+        onFocus={onFocus}
+        handleClick={handleClick}
+      />
       <View style={{
         flex: 1, borderTopColor: Colors.neutralLine, borderTopWidth: 1, paddingTop: 12,
       }}
