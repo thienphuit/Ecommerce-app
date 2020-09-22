@@ -12,6 +12,8 @@ import {
   TypoGrayphy,
 } from '../../../assets/styles'
 import { bottomIcon } from '../../../assets/images'
+import { Screen } from '../../constants'
+import { Label } from '../../constants/common'
 
 const BirthDay = ({ route, navigation }) => {
   // const [selectedValue, setSelectedValue] = useState('2020-02-02')
@@ -36,7 +38,7 @@ const BirthDay = ({ route, navigation }) => {
   return (
     <View style={styles.container}>
       <SafeAreaView />
-      <Header title="BirthDay" navigation={navigation} />
+      <Header title={Screen.BirthDay} navigation={navigation} />
       <View style={{ flex: 1, paddingHorizontal: mainPaddingH }}>
         <View style={{ marginTop: mainPaddingH }}>
           <Text style={{ ...TypoGrayphy.heading5 }}>Your BirthDay</Text>
@@ -45,7 +47,7 @@ const BirthDay = ({ route, navigation }) => {
               <Text>{formatTime}</Text>
               <Image
                 source={bottomIcon}
-                style={{ width: 24 * calWidth, height: 24 * calWidth }}
+                style={styles.iconChooseImage}
               />
             </View>
           </TouchableOpacity>
@@ -55,9 +57,8 @@ const BirthDay = ({ route, navigation }) => {
             style={styles.calendar}
             hideExtraDays
             onDayPress={onDayPress}
-            headerStyle={{ borderBottomWidth: 1, borderBottomColor: Colors.neutralLine }}
+            headerStyle={styles.headerStyle}
             markingType="custom"
-
             markedDates={{
               [selected]: {
                 selected: true,
@@ -68,23 +69,27 @@ const BirthDay = ({ route, navigation }) => {
             }}
           /> : <View />}
         </View>
-
       </View>
-      <View style={{ marginBottom: 20 }}>
-        <ButtonComponent name="Save" handleClick={handleButtonSave} />
+      <View style={styles.viewButtonSave}>
+        <ButtonComponent name={Label.Save} handleClick={handleButtonSave} />
       </View>
       <SafeAreaView />
-
     </View>
   )
 }
 
 const styles = StyleSheet.create({
+  headerStyle: {
+    borderBottomWidth: 1, borderBottomColor: Colors.neutralLine,
+  },
+  viewButtonSave: {
+    marginBottom: 20 * calWidth,
+  },
+  iconChooseImage: {
+    width: 24 * calWidth, height: 24 * calWidth,
+  },
   container: {
     flex: 1,
-  },
-  headerStyle: {
-    color: 'red',
   },
   picker: {
     paddingHorizontal: mainPaddingH,

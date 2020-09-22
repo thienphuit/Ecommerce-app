@@ -1,8 +1,7 @@
-import { SEARCH_TYPE } from './searchType'
-import {
-  PRODUCT_LIKE, PRODUCT_TYPE, CATEGORY, SWIPPERS,
-} from './productType'
+import * as searchTypes from './search'
+import * as productTypes from './product'
+import * as notifyTypes from './notify'
 
 export {
-  SEARCH_TYPE, PRODUCT_LIKE, PRODUCT_TYPE, CATEGORY, SWIPPERS,
+  searchTypes, productTypes, notifyTypes,
 }

@@ -1,48 +1,50 @@
-import {
-  View, StyleSheet, TouchableOpacity, SafeAreaView,
-} from 'react-native'
 import React from 'react'
-import Icon from 'react-native-vector-icons/FontAwesome'
+import {
+  View, StyleSheet, TouchableOpacity, SafeAreaView, Image,
+} from 'react-native'
 import { Text, NotificationMask, Header } from '../../components'
-import { Colors, calWidth } from '../../../assets/styles'
+import {
+  Colors, calWidth, TypoGrayphy, mainPaddingH,
+} from '../../../assets/styles'
+import { Screen } from '../../constants'
+import { offer, list, notification } from '../../../assets/images'
 
 const Notification = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <SafeAreaView />
-      <Header title="Notification" navigation={navigation} />
+      <Header title={Screen.Notification} navigation={navigation} />
       <TouchableOpacity
-        onPress={() => navigation.push('NotificationOffer')}
+        onPress={() => navigation.push(Screen.NotificationOffer)}
       >
         <View style={styles.offer}>
-          <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-            <Icon name="tag" size={24} color={Colors.primaryBlue} />
-
-            <Text style={{ marginLeft: 16 * calWidth }}>Offer</Text>
+          <View style={styles.notifyRow}>
+            <Image source={offer} style={styles.image} resizeMode="contain" />
+            <Text style={styles.notifyTitle}>Offer</Text>
           </View>
           <NotificationMask number="2" />
         </View>
       </TouchableOpacity>
       <TouchableOpacity
-        onPress={() => navigation.navigate('NotificationFeed')}
+        onPress={() => navigation.navigate(Screen.NotificationFeed)}
       >
         <View style={styles.offer}>
-          <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-            <Icon name="list-alt" size={24} color={Colors.primaryBlue} />
+          <View style={styles.notifyRow}>
+            <Image source={list} style={styles.image} resizeMode="contain" />
 
-            <Text style={{ marginLeft: 16 * calWidth }}>Feed</Text>
+            <Text style={styles.notifyTitle}>Feed</Text>
           </View>
           <NotificationMask number="3" />
         </View>
       </TouchableOpacity>
       <TouchableOpacity
-        onPress={() => navigation.navigate('NotificationActivity')}
+        onPress={() => navigation.navigate(Screen.NotificationActivity)}
       >
         <View style={styles.offer}>
-          <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-            <Icon name="bell" size={24} color={Colors.primaryBlue} />
+          <View style={styles.notifyRow}>
+            <Image source={notification} style={styles.image} resizeMode="contain" />
 
-            <Text style={{ marginLeft: 16 * calWidth }}>Activity</Text>
+            <Text style={styles.notifyTitle}>Activity</Text>
           </View>
           <NotificationMask number="3" />
         </View>
@@ -54,12 +56,23 @@ const Notification = ({ navigation }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-
   },
   offer: {
     flexDirection: 'row',
-    padding: 16 * calWidth,
+    padding: mainPaddingH,
     justifyContent: 'space-between',
+  },
+  notifyRow: {
+    flexDirection: 'row', alignItems: 'center',
+  },
+  notifyTitle: {
+    marginLeft: mainPaddingH,
+    ...TypoGrayphy.heading6,
+  },
+  image: {
+    width: 24 * calWidth,
+    height: 24 * calWidth,
+    tintColor: Colors.primaryBlue,
   },
 })
 

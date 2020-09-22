@@ -16,6 +16,7 @@ import {
 import {
   message, messageBlue,
 } from '../../../assets/images'
+import { Label } from '../../constants/common'
 
 const Email = ({ route, navigation }) => {
   const [value, setValue] = useState('Male')
@@ -30,17 +31,14 @@ const Email = ({ route, navigation }) => {
     setIsActive(!isActive)
   }
   const handleOnchange = () => {
-    // console.log('============================')
-    // console.log('handleOnchange', event)
-    // console.log('============================')
-    // setIsActive(!isActive)
+
   }
   const { email } = route.params
   return (
     <View style={styles.container}>
       <SafeAreaView />
       <Header title="Name" navigation={navigation} />
-      <View style={{ flex: 1, paddingHorizontal: mainPaddingH }}>
+      <View style={styles.viewEmail}>
         <View>
           <TextInput
             iconLeft={isActive && isActive ? messageBlue : message}
@@ -50,18 +48,23 @@ const Email = ({ route, navigation }) => {
             onFocus={handleOnFocus}
             isActive={isActive}
           />
-          <Text style={{ marginTop: 8 * calWidth, color: Colors.primaryBlue }}>We Will Send verification to your New Email</Text>
+          <Text style={styles.titleContent}>We Will Send verification to your New Email</Text>
         </View>
-
       </View>
-      <ButtonComponent name="Save" handleClick={handleButtonSave} />
+      <ButtonComponent name={Label.Save} handleClick={handleButtonSave} />
       <SafeAreaView />
-
     </View>
   )
 }
 
 const styles = StyleSheet.create({
+  titleContent: {
+    marginTop: 8 * calWidth, color: Colors.primaryBlue,
+  },
+  viewEmail: {
+    flex: 1,
+    paddingHorizontal: mainPaddingH,
+  },
   container: {
     flex: 1,
   },

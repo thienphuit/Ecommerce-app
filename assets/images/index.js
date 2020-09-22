@@ -59,6 +59,11 @@ const gender = require('./gender.png')
 const paypal = require('./paypal.png')
 const transaction = require('./transaction.png')
 const plus = require('./plus.png')
+const list = require('./list.png')
+const mic = require('./mic.png')
+const iconX = require('./iconX.png')
+const short = require('./short.png')
+const notFound = require('./notFound.png')
 
 const reviews = [
   { image: rvProduct },
@@ -74,5 +79,5 @@ export {
   womanBag, tshirt, shirt, womanShoes, manPants, bikini, manShoes, dress, home,
   cart, promotionImage2, offer, userBlue, rightICon, bottomIcon, shortIcon, filter,
   creditCard, debitCard, alterIcon, messageBlue, dateBlue, bag, user, location,
-  card, phoneBlue, gender, paypal, transaction, plus,
+  card, phoneBlue, gender, paypal, transaction, plus, list, mic, iconX, short, notFound,
 }

@@ -35,7 +35,7 @@ const NotficationOffer = (props) => {
         <FlatList
           data={listItem}
           renderItem={({ item }) => <NotificationItem item={item} isIcon />}
-          keyExtractor={(item) => `List notift ${item.id}`}
+          keyExtractor={(item, index) => `List notift ${index}`}
         />
 
       </View>

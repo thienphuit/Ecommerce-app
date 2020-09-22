@@ -6,6 +6,7 @@ import { CardOrder, Header } from '../../components'
 import {
   mainPaddingH, calWidth,
 } from '../../../assets/styles'
+import { Screen } from '../../constants'
 
 const Order = ({ navigation }) => {
   // const handleFocus = (item) => {
@@ -14,7 +15,7 @@ const Order = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <SafeAreaView />
-      <Header title="Order" navigation={navigation} />
+      <Header title={Screen.Order} navigation={navigation} />
       <CardOrder />
     </View>
   )

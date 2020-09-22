@@ -1,8 +1,9 @@
 import { combineReducers } from 'redux'
-import searchReducer from './searchReducer'
-import productReducer from './productReducer'
+import searchReducer from './search'
+import productReducer from './product'
+import notificationReducer from './notify'
 
-const reducer = combineReducers({
-  search: searchReducer, products: productReducer,
+const rootReducer = combineReducers({
+  search: searchReducer, products: productReducer, notify: notificationReducer,
 })
-export default reducer
+export default rootReducer

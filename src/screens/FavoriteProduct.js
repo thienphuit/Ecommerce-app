@@ -4,7 +4,7 @@ import {
   View, StyleSheet, SafeAreaView, FlatList,
 } from 'react-native'
 import { Header, ProductCart } from '../components'
-import { calWidth } from '../../assets/styles'
+import { calWidth, mainPaddingH } from '../../assets/styles'
 import { Screen } from '../constants'
 
 const FavoriteProduct = (props) => {
@@ -32,7 +32,6 @@ const FavoriteProduct = (props) => {
                   sImage: 133 * calWidth,
                 }}
               />
-
             )
           }}
           columnWrapperStyle={styles.conlumnWrapper}
@@ -52,7 +51,8 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   viewFlatlist: {
-    marginHorizontal: 16, marginTop: 16,
+    marginHorizontal: mainPaddingH,
+    marginTop: mainPaddingH,
   },
 })
 export default FavoriteProduct

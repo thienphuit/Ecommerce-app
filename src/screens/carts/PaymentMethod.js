@@ -1,11 +1,11 @@
 import React, { useState } from 'react'
 import {
-  View, Image, TouchableOpacity, SafeAreaView,
+  View, Image, TouchableOpacity, SafeAreaView, StyleSheet,
 } from 'react-native'
 
 import { Text, Header } from '../../components'
 import { love_24 } from '../../../assets/images'
-import { TypoGrayphy, Colors } from '../../../assets/styles'
+import { TypoGrayphy, Colors, mainPaddingH } from '../../../assets/styles'
 
 const listBank = [
   { id: 1, title: 'Credit Card Or Debit' },
@@ -43,16 +43,10 @@ const PaymentMethod = (props) => {
         return (
           <TouchableOpacity onPress={() => handleChoose(item)} key={`List idnex ${item.id}`}>
             <View
-
-              style={{
-                padding: 16,
-                flexDirection: 'row',
-                alignItems: 'center',
-                backgroundColor: selected === item.id ? Colors.neutralLine : 'transparent',
-              }}
+              style={[styles.itemPayment, { backgroundColor: selected === item.id ? Colors.neutralLine : 'transparent' }]}
             >
               <Image source={love_24} />
-              <Text style={{ marginLeft: 16, ...TypoGrayphy.heading6 }}>{item.title}</Text>
+              <Text style={styles.title}>{item.title}</Text>
             </View>
           </TouchableOpacity>
         )
@@ -60,4 +54,12 @@ const PaymentMethod = (props) => {
     </View>
   )
 }
+const styles = StyleSheet.create({
+  title: { marginLeft: mainPaddingH, ...TypoGrayphy.heading6 },
+  itemPayment: {
+    padding: mainPaddingH,
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+})
 export default PaymentMethod

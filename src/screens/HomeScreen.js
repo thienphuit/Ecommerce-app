@@ -1,5 +1,5 @@
-import React, { useState } from 'react'
-import { useSelector } from 'react-redux'
+import React, { useState, useEffect } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
 import {
   View, StyleSheet, SafeAreaView, Dimensions, FlatList, ScrollView,
 } from 'react-native'
@@ -13,18 +13,26 @@ import {
 import { promotionImage } from '../../assets/images'
 import CategoryItem from '../components/CategoryItem'
 import { Screen } from '../constants/index'
+import { searchActions } from '../redux/actions'
 
 const { width } = Dimensions.get('window')
 
 const HomeScreen = (props) => {
   const { navigation } = props
   const [onFocus, setOnFocus] = useState(false)
+  const dispatch = useDispatch()
   const handleFocus = () => {
     setOnFocus(true)
   }
   const productLikes = useSelector((state) => state.products.productLikes)
   const categoryList = useSelector((state) => state.products.categorys)
   const swipperList = useSelector((state) => state.products.swipperList)
+  const getData = async () => {
+    dispatch(searchActions.getSearchAction())
+  }
+  useEffect(() => {
+    getData()
+  }, [])
   return (
     <View style={styles.container}>
       <SafeAreaView />
@@ -56,7 +64,7 @@ const HomeScreen = (props) => {
               />
             </View>
             <View>
-              <View style={[styles.labelCate, { marginTop: 24 }]}>
+              <View style={[styles.labelCate, { marginTop: 24 * calWidth }]}>
                 <Text style={styles.titleCategory}>Flash Sale</Text>
                 <Text style={styles.moreCategory}>See More</Text>
               </View>
@@ -79,7 +87,7 @@ const HomeScreen = (props) => {
                   keyExtractor={(item, index) => `Productline list ${index}`}
                 />
               </View>
-              <View style={[styles.labelCate, { marginTop: 24 }]}>
+              <View style={[styles.labelCate, { marginTop: 24 * calWidth }]}>
                 <Text style={styles.titleCategory}>Mega Sale</Text>
                 <Text style={styles.moreCategory}>See More</Text>
               </View>
@@ -120,7 +128,6 @@ const HomeScreen = (props) => {
                           sImage: 133 * calWidth,
                         }}
                       />
-
                     )
                   }}
                   columnWrapperStyle={{

@@ -14,6 +14,7 @@ import {
   mainPaddingH,
   TypoGrayphy,
 } from '../../../assets/styles'
+import { Label } from '../../constants/common'
 
 const ChangeName = (props) => {
   const handleButtonSave = () => {
@@ -34,7 +35,7 @@ const ChangeName = (props) => {
           <TextInput style={styles.input} placeholder="Gold" />
         </View>
       </View>
-      <ButtonComponent name="Save" handleClick={handleButtonSave} />
+      <ButtonComponent name={Label.Save} handleClick={handleButtonSave} />
       <SafeAreaView />
     </View>
   )

@@ -79,8 +79,8 @@ const styles = StyleSheet.create({
   },
   picker: {
     paddingHorizontal: mainPaddingH,
-    paddingVertical: 12,
-    borderRadius: 5,
+    paddingVertical: 12 * calWidth,
+    borderRadius: 5 * calWidth,
     borderWidth: StyleSheet.hairlineWidth,
     borderColor: Colors.neutralLine,
     marginTop: 12 * calWidth,

@@ -15,25 +15,15 @@ const OfferScreen = () => {
   return (
     <View style={styles.container}>
       <SafeAreaView />
-      <View style={{
-        paddingVertical: 16 * calWidth,
-        borderBottomWidth: StyleSheet.hairlineWidth,
-        borderBottomColor: Colors.borderColor,
-        // marginLeft: mainPaddingH,
-        // backgroundColor: 'red',
-      }}
-      >
-        <Text style={{ ...TypoGrayphy.heading4, marginLeft: mainPaddingH }}>Offer</Text>
+      <View style={styles.viewHeader}>
+        <Text style={styles.labelHeader}>Offer</Text>
       </View>
       <ScrollView
         showsVerticalScrollIndicator={false}
       >
-        <View style={{ flex: 1, paddingHorizontal: mainPaddingH, paddingVertical: 16 }}>
-          <View style={{ backgroundColor: Colors.primaryBlue, borderRadius: 5 }}>
-            <Text style={{
-              padding: 16, ...TypoGrayphy.heading4, color: Colors.backgroudWhite, width: 212,
-            }}
-            >
+        <View style={styles.viewBody}>
+          <View style={styles.viewCopon}>
+            <Text style={styles.labelCupon}>
               Use “MEGSL” Cupon For Get 90%off
             </Text>
           </View>
@@ -48,6 +38,27 @@ const OfferScreen = () => {
 }
 
 const styles = StyleSheet.create({
+  labelCupon: {
+    padding: mainPaddingH,
+    ...TypoGrayphy.heading4,
+    color: Colors.backgroudWhite,
+    width: 212 * calWidth,
+  },
+  viewCopon: {
+    backgroundColor: Colors.primaryBlue,
+    borderRadius: 5 * calWidth,
+  },
+  viewBody: {
+    flex: 1,
+    paddingHorizontal: mainPaddingH,
+    paddingVertical: mainPaddingH,
+  },
+  labelHeader: { ...TypoGrayphy.heading4, marginLeft: mainPaddingH },
+  viewHeader: {
+    paddingVertical: mainPaddingH,
+    borderBottomWidth: StyleSheet.hairlineWidth,
+    borderBottomColor: Colors.borderColor,
+  },
   container: {
     flex: 1,
   },

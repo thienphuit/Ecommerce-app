@@ -11,4 +11,27 @@ export const Screen = {
   SubperSale: 'SubperSale',
   Explore: 'Explore',
   SearchScreen: 'SearchScreen',
+  CartScreen: 'CartScreen',
+  SearchResult: 'SearchResult',
+  Category: 'Category',
+  SortByScreen: 'SortByScreen',
+  ShipTo: 'ShipTo',
+  Payment: 'Payment',
+  Credit: 'Credit',
+  AddCard: 'AddCard',
+  Address: 'Address',
+  DeleteAddress: 'DeleteAddress',
+  AccountScreen: 'AccountScreen',
+  Profile: 'Profile',
+  ChangeName: 'ChangeName',
+  Gender: 'Gender',
+  BirthDay: 'BirthDay',
+  Email: 'Email',
+  Phone: 'Phone',
+  ChangePass: 'ChangePass',
+  Order: 'Order',
+}
+
+export const Label = {
+  Save: 'Save',
 }

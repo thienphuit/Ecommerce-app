@@ -18,25 +18,23 @@ import {
   gender,
   passIcon,
 } from '../../../assets/images'
+import { Screen } from '../../constants'
 
 const Profile = (props) => {
   const { navigation } = props
   return (
     <View style={styles.container}>
       <SafeAreaView />
-      <Header title="Profile" {...props} />
-      <View style={{ flex: 1, paddingHorizontal: mainPaddingH }}>
-        <View style={{
-          flexDirection: 'row', alignItems: 'center', paddingTop: 24 * calWidth, marginBottom: 32 * calWidth,
-        }}
-        >
-          <Image source={avatar} style={{ width: 72, height: 72 }} />
+      <Header title={Screen.Profile} {...props} />
+      <View style={styles.viewWrapper}>
+        <View style={styles.viewProfile}>
+          <Image source={avatar} style={styles.avatar} />
           <TouchableOpacity
-            onPress={() => { navigation.navigate('ChangeName') }}
+            onPress={() => { navigation.navigate(Screen.ChangeName) }}
           >
-            <View style={{ marginLeft: 16 * calWidth }}>
-              <Text style={{ ...TypoGrayphy.heading5 }}>Maximus Gold</Text>
-              <Text style={{ ...TypoGrayphy.bodyNormalTextRegular, color: Colors.neutralGrey }}>@Maximus Gold</Text>
+            <View style={styles.viewAvatarName}>
+              <Text style={styles.titleName}>Maximus Gold</Text>
+              <Text style={styles.gmail}>@Maximus Gold</Text>
             </View>
           </TouchableOpacity>
         </View>
@@ -85,6 +83,25 @@ const Profile = (props) => {
 }
 
 const styles = StyleSheet.create({
+  gmail: {
+    ...TypoGrayphy.bodyNormalTextRegular,
+    color: Colors.neutralGrey,
+  },
+  titleName: { ...TypoGrayphy.heading5 },
+  viewAvatarName: {
+    marginLeft: mainPaddingH,
+  },
+  avatar: {
+    width: 72 * calWidth,
+    height: 72 * calWidth,
+  },
+  viewProfile: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingTop: 24 * calWidth,
+    marginBottom: 32 * calWidth,
+  },
+  viewWrapper: { flex: 1, paddingHorizontal: mainPaddingH },
   container: {
     flex: 1,
   },

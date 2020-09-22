@@ -37,7 +37,7 @@ const Phone = ({ route, navigation }) => {
     <View style={styles.container}>
       <SafeAreaView />
       <Header title="Phone" navigation={navigation} />
-      <View style={{ flex: 1, paddingHorizontal: mainPaddingH }}>
+      <View style={styles.viewWrapper}>
         <View>
           <TextInput
             iconLeft={isActive && isActive ? messageBlue : message}
@@ -47,7 +47,7 @@ const Phone = ({ route, navigation }) => {
             onFocus={handleOnFocus}
             isActive={isActive}
           />
-          <Text style={{ marginTop: 8 * calWidth, color: Colors.primaryBlue }}>We Will Send verification to your New Email</Text>
+          <Text style={styles.introduce}>We Will Send verification to your New Email</Text>
         </View>
 
       </View>
@@ -59,6 +59,8 @@ const Phone = ({ route, navigation }) => {
 }
 
 const styles = StyleSheet.create({
+  introduce: { marginTop: 8 * calWidth, color: Colors.primaryBlue },
+  viewWrapper: { flex: 1, paddingHorizontal: mainPaddingH },
   container: {
     flex: 1,
   },

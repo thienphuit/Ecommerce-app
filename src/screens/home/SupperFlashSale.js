@@ -52,10 +52,7 @@ const SupperFlashSale = (props) => {
 
               )
             }}
-            columnWrapperStyle={{
-              justifyContent: 'space-between',
-              marginBottom: 12 * calWidth,
-            }}
+            columnWrapperStyle={styles.columnWrapperStyle}
             keyExtractor={(item, index) => `Product Supper Sale ${index}`}
           />
         </View>
@@ -66,6 +63,10 @@ const SupperFlashSale = (props) => {
 }
 
 const styles = StyleSheet.create({
+  columnWrapperStyle: {
+    justifyContent: 'space-between',
+    marginBottom: 12 * calWidth,
+  },
   container: {
     flex: 1,
   },

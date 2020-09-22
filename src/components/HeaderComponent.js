@@ -1,6 +1,6 @@
 import React from 'react'
 import {
-  View, Image, TextInput, StyleSheet, TouchableOpacity,
+  View, Image, TextInput, StyleSheet, TouchableOpacity, Text,
 } from 'react-native'
 import PropTypes from 'prop-types'
 import {
@@ -14,7 +14,7 @@ import {
 
 const HeaderComponent = (props) => {
   const {
-    navigation, onFocus, handleClick,
+    navigation, onFocus, handleClick, iconRight, iconNearRight,
   } = props
   return (
     <View style={styles.header}>
@@ -28,10 +28,12 @@ const HeaderComponent = (props) => {
               resizeMode="contain"
             />
 
-            <TextInput
-              style={{ flex: 1, marginLeft: mainPaddingH }}
-              placeholder="Search Product"
-            />
+            <Text
+              style={{ flex: 1, marginLeft: mainPaddingH, color: Colors.neutralGrey }}
+            // onFocus={() => handleFocus()}
+            >
+              Search Product
+            </Text>
 
           </View>
         </TouchableOpacity>
@@ -40,7 +42,7 @@ const HeaderComponent = (props) => {
       <View style={{ flexDirection: 'row' }}>
         <TouchableOpacity onPress={() => navigation.navigate('Favorite')}>
           <Image
-            source={love_24}
+            source={iconNearRight && iconNearRight ? iconNearRight : love_24}
             style={styles.image}
             resizeMode="contain"
           />
@@ -50,7 +52,7 @@ const HeaderComponent = (props) => {
         >
           <View>
             <Image
-              source={notification}
+              source={iconRight && iconRight ? iconNearRight : notification}
               style={styles.image}
               resizeMode="contain"
             />
@@ -101,6 +103,6 @@ const styles = StyleSheet.create({
 })
 HeaderComponent.propTypes = {
   // handleFocus: PropTypes.func.isRequired,
-  onFocus: PropTypes.bool.isRequired,
+  // onFocus: PropTypes.bool.isRequired,
 }
 export default HeaderComponent

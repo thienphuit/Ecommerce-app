@@ -17,10 +17,9 @@ const DeleteAddress = () => {
     <View style={styles.container}>
       <SafeAreaView />
       <Image source={alterIcon} style={styles.image} resizeMode="contain" />
-      <Text style={{ ...TypoGrayphy.heading2 }}>Confirmation</Text>
+      <Text style={styles.titleDelete}>Confirmation</Text>
       <Text>Are you sure wanna delete address</Text>
-
-      <ButtonComponent name="Cancel" style={{ width: width - 32, marginVertical: 16 }} />
+      <ButtonComponent name="Cancel" style={styles.buttonCancel} />
       <ButtonComponent
         name="Delete"
         style={styles.customImage}
@@ -31,6 +30,11 @@ const DeleteAddress = () => {
 }
 
 const styles = StyleSheet.create({
+  buttonCancel: {
+    width: width - 32 * calWidth,
+    marginVertical: 16 * calWidth,
+  },
+  titleDelete: { ...TypoGrayphy.heading2 },
   image: {
     width: 72 * calWidth,
     height: 72 * calWidth,
@@ -49,7 +53,7 @@ const styles = StyleSheet.create({
     marginTop: mainPaddingH,
   },
   customImage: {
-    width: width - 32,
+    width: width - 32 * calWidth,
     backgroundColor: '#FFF',
     borderWidth: StyleSheet.hairlineWidth,
     borderColor: Colors.neutralLine,

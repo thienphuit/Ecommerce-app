@@ -39,9 +39,9 @@ const Address = ({ navigation }) => {
       <SafeAreaView />
       <Header title="Address" navigation={navigation} />
       <ScrollView>
-        <View style={{ flex: 1, paddingHorizontal: mainPaddingH }}>
-          <View style={{ marginTop: mainPaddingH }}>
-            <Text style={{ ...TypoGrayphy.heading5 }}>Country or region</Text>
+        <View style={styles.viewWrapper}>
+          <View style={styles.viewCountry}>
+            <Text style={styles.title}>Country or region</Text>
             <PickerComponent
               genders={listPicker}
               handleShowList={handleShowList}
@@ -50,36 +50,36 @@ const Address = ({ navigation }) => {
               handleFame={handleFame}
             />
           </View>
-          <View style={{ marginTop: 24 * calWidth }}>
-            <Text style={{ ...TypoGrayphy.heading5 }}>First name</Text>
+          <View style={styles.viewTitle}>
+            <Text style={styles.title}>First name</Text>
             <TextInput style={styles.input} placeholder="Gold" />
           </View>
-          <View style={{ marginTop: 24 * calWidth }}>
-            <Text style={{ ...TypoGrayphy.heading5 }}>Last name</Text>
+          <View style={styles.viewTitle}>
+            <Text style={styles.title}>Last name</Text>
             <TextInput style={styles.input} placeholder="Gold" />
           </View>
-          <View style={{ marginTop: 24 * calWidth }}>
-            <Text style={{ ...TypoGrayphy.heading5 }}>Street Address</Text>
+          <View style={styles.viewTitle}>
+            <Text style={styles.title}>Street Address</Text>
             <TextInput style={styles.input} />
           </View>
-          <View style={{ marginTop: 24 * calWidth }}>
-            <Text style={{ ...TypoGrayphy.heading5 }}>Street Address 2 (Optional)</Text>
+          <View style={styles.viewTitle}>
+            <Text style={styles.title}>Street Address 2 (Optional)</Text>
             <TextInput style={styles.input} />
           </View>
-          <View style={{ marginTop: 24 * calWidth }}>
-            <Text style={{ ...TypoGrayphy.heading5 }}>City</Text>
+          <View style={styles.viewTitle}>
+            <Text style={styles.title}>City</Text>
             <TextInput style={styles.input} />
           </View>
-          <View style={{ marginTop: 24 * calWidth }}>
-            <Text style={{ ...TypoGrayphy.heading5 }}>State/Province/Region</Text>
+          <View style={styles.viewTitle}>
+            <Text style={styles.title}>State/Province/Region</Text>
             <TextInput style={styles.input} />
           </View>
-          <View style={{ marginTop: 24 * calWidth }}>
-            <Text style={{ ...TypoGrayphy.heading5 }}>Zip Code</Text>
+          <View style={styles.viewTitle}>
+            <Text style={styles.title}>Zip Code</Text>
             <TextInput style={styles.input} />
           </View>
-          <View style={{ marginVertical: 24 * calWidth }}>
-            <Text style={{ ...TypoGrayphy.heading5 }}>Number Phone</Text>
+          <View style={styles.viewnumber}>
+            <Text style={styles.title}>Number Phone</Text>
             <TextInput style={styles.input} />
           </View>
         </View>
@@ -91,6 +91,11 @@ const Address = ({ navigation }) => {
 }
 
 const styles = StyleSheet.create({
+  viewCountry: { marginTop: mainPaddingH },
+  viewWrapper: { flex: 1, paddingHorizontal: mainPaddingH },
+  viewnumber: { marginVertical: 24 * calWidth },
+  viewTitle: { marginTop: 24 * calWidth },
+  title: { ...TypoGrayphy.heading5 },
   container: {
     flex: 1,
   },

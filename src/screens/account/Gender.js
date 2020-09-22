@@ -11,6 +11,8 @@ import {
   mainPaddingH,
   TypoGrayphy,
 } from '../../../assets/styles'
+import { Screen } from '../../constants'
+import { Label } from '../../constants/common'
 
 const listGender = [
   { id: 1, tilte: 'Male' },
@@ -35,10 +37,10 @@ const Gender = (props) => {
   return (
     <View style={styles.container}>
       <SafeAreaView />
-      <Header title="Gender" navigation={navigation} />
-      <View style={{ flex: 1, paddingHorizontal: mainPaddingH }}>
-        <View style={{ marginTop: mainPaddingH }}>
-          <Text style={{ ...TypoGrayphy.heading5 }}>Choose gender</Text>
+      <Header title={Screen.Gender} navigation={navigation} />
+      <View style={styles.viewWrapper}>
+        <View style={styles.viewChoose}>
+          <Text style={styles.label}>Choose gender</Text>
           <PickerComponent
             genders={listGender}
             showView={showView}
@@ -49,7 +51,7 @@ const Gender = (props) => {
         </View>
 
       </View>
-      <ButtonComponent name="Save" handleClick={handleButtonSave} />
+      <ButtonComponent name={Label.Save} handleClick={handleButtonSave} />
       <SafeAreaView />
 
     </View>
@@ -57,6 +59,12 @@ const Gender = (props) => {
 }
 
 const styles = StyleSheet.create({
+  viewChoose: { marginTop: mainPaddingH },
+  label: { ...TypoGrayphy.heading5 },
+  viewWrapper: {
+    flex: 1,
+    paddingHorizontal: mainPaddingH,
+  },
   container: {
     flex: 1,
   },

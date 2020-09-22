@@ -1,10 +1,11 @@
 import React, { useState } from 'react'
 import {
-  View, Image, Dimensions, SafeAreaView, TouchableOpacity,
+  View, Image, Dimensions, SafeAreaView, TouchableOpacity, StyleSheet,
 } from 'react-native'
 import { creditCard, debitCard } from '../../../assets/images'
-import { calWidth } from '../../../assets/styles'
+import { calWidth, mainPaddingH } from '../../../assets/styles'
 import { ButtonComponent, Header } from '../../components'
+import { Screen } from '../../constants'
 
 const { width } = Dimensions.get('window')
 const CreditCard = (props) => {
@@ -15,18 +16,17 @@ const CreditCard = (props) => {
     <View style={{ flex: 1 }}>
       <SafeAreaView />
       <Header title="CreditCard" navigation={navigation} />
-      <View style={{ alignItems: 'center', padding: 16, flex: 1 }}>
+      <View style={styles.viewWrapper}>
         <TouchableOpacity onPress={() => setChooseCard('creditcard')}>
-          <Image source={creditCard} style={{ width: width - 32 * calWidth, marginBottom: 16 }} resizeMode="cover" />
-
+          <Image source={creditCard} style={styles.imageCard} resizeMode="cover" />
         </TouchableOpacity>
-        <Image source={debitCard} style={{ width: width - 32 * calWidth, marginBottom: 16 }} resizeMode="cover" />
+        <Image source={debitCard} style={styles.imageCard} resizeMode="cover" />
       </View>
-      <View style={{ marginBottom: 16 }}>
+      <View style={styles.viewButtonSubmit}>
         <ButtonComponent
           name="Add Card"
           creditCard={chooseCard}
-          handleClick={() => props.navigation.navigate('AddCard', {
+          handleClick={() => props.navigation.navigate(Screen.AddCard, {
             card: chooseCard,
           })}
         />
@@ -35,4 +35,17 @@ const CreditCard = (props) => {
     </View>
   )
 }
+const styles = StyleSheet.create({
+  viewButtonSubmit: { marginBottom: mainPaddingH },
+  viewWrapper: {
+    alignItems: 'center',
+    padding: mainPaddingH,
+    flex: 1,
+  },
+  imageCard: {
+    width: width - 32 * calWidth,
+    marginBottom: mainPaddingH,
+    borderRadius: 5 * calWidth,
+  },
+})
 export default CreditCard

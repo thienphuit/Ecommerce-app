@@ -7,15 +7,16 @@ import { Text, ButtonComponent, Header } from '../../components'
 import {
   TypoGrayphy, Colors, mainPaddingH, calWidth,
 } from '../../../assets/styles'
+import { Screen } from '../../constants'
 
 const AddCard = (props) => {
   const { navigation } = props
   return (
     <View style={styles.container}>
       <SafeAreaView />
-      <Header title="AddCard" navigation={navigation} />
+      <Header title={Screen.AddCard} navigation={navigation} />
       <ScrollView>
-        <View style={{ flex: 1, paddingHorizontal: mainPaddingH }}>
+        <View style={styles.viewWrapper}>
           <View style={{ marginTop: mainPaddingH }}>
             <Text style={{ ...TypoGrayphy.heading5 }}>Card Number</Text>
             <TextInput style={styles.input} placeholder="Enter Card Number" />
@@ -42,6 +43,7 @@ const AddCard = (props) => {
   )
 }
 const styles = StyleSheet.create({
+  viewWrapper: { flex: 1, paddingHorizontal: mainPaddingH },
   container: {
     flex: 1,
   },

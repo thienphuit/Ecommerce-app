@@ -1,4 +1,4 @@
-import * as searchType from '../types'
+import { searchTypes } from '../types'
 
 const init = {
   listSearch: [
@@ -12,10 +12,16 @@ const init = {
 
 const searchReducer = (state = init, action) => {
   switch (action.type) {
-    case searchType.SEARCH_TYPE:
+    case searchTypes.SEARCH_TYPE:
       return {
-        ...state, ...state.listSearch,
+        ...state, listSearch: [...state.listSearch],
       }
+    case searchTypes.SEARCH_TYPE_SUCCESS: {
+      const { data } = action.payload
+      return {
+        ...state, ...data,
+      }
+    }
 
     default:
       return state

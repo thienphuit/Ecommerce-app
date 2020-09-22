@@ -1,4 +1,4 @@
-import * as productType from '../types'
+import { productTypes } from '../types'
 import {
   productLike,
   shoes_2,
@@ -25,12 +25,12 @@ const init = {
     { id: 3, title: 'Nike Air Max 270 React ENG', image: phoduct2 },
   ],
   categorys: [
-    { image: shirt, title: 'Man shirt' },
-    { image: dress, title: 'Dress' },
-    { image: womanBag, title: 'Women Bag' },
-    { image: womanShoes, title: 'Woman Shoest' },
-    { image: tshirt, title: 'Man shirt' },
-    { image: tshirt, title: 'Man shirt' },
+    { id: 1, image: shirt, title: 'Man shirt' },
+    { id: 2, image: dress, title: 'Dress' },
+    { id: 3, image: womanBag, title: 'Women Bag' },
+    { id: 4, image: womanShoes, title: 'Woman Shoest' },
+    { id: 5, image: tshirt, title: 'Man shirt' },
+    { id: 6, image: tshirt, title: 'Man shirt' },
   ],
   swipperList: [
     { image: promotionImage },
@@ -40,13 +40,13 @@ const init = {
 }
 const productReducer = (state = init, action) => {
   switch (action.type) {
-    case productType.PRODUCT_TYPE:
+    case productTypes.PRODUCT_TYPE:
       return { ...state, products: [...state.listShoes] }
-    case productType.PRODUCT_LIKE:
+    case productTypes.PRODUCT_LIKE:
       return { ...state, productLikes: [...state.productLikes] }
-    case productType.CATEGORY:
+    case productTypes.CATEGORY:
       return { ...state, categorys: [...state.categorys] }
-    case productType.SWIPPERS:
+    case productTypes.SWIPPERS:
       return { ...state, swipperList: [...state.swipperList] }
     default:
       return state

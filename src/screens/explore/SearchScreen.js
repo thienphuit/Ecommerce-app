@@ -1,41 +1,61 @@
-import React from 'react'
+import React, { useState } from 'react'
 import {
-  View, TouchableOpacity, StyleSheet, Image, TextInput, SafeAreaView, FlatList, Text,
+  View, StyleSheet, SafeAreaView, FlatList, TouchableOpacity,
 } from 'react-native'
-import { useSelector, useDispatch } from 'react-redux'
+import { useSelector } from 'react-redux'
 import {
-  TypoGrayphy, mainPaddingH, Colors, calWidth,
+  TypoGrayphy, mainPaddingH, Colors,
 } from '../../../assets/styles'
+import HeaderSearch from './HeaderSearch'
+import { mic } from '../../../assets/images'
+import { Text } from '../../components'
+import { Screen } from '../../constants'
 
 const SearchSreen = (props) => {
-  const listSearch = useSelector((state) => state.listSearch)
+  const [textInput, setTextInput] = useState('')
+  const listSearch = useSelector((state) => state.search.listSearch)
+  const handeChangeText = (text) => {
+    setTextInput(text)
+  }
+  const filtered = listSearch.filter((todo) => todo.title.toLowerCase().includes(textInput.toLowerCase()))
   const { navigation } = props
   return (
-    <View>
+    <View style={styles.container}>
       <SafeAreaView />
-      <FlatList
-        data={listSearch}
-        keyExtractor={(item) => `List search ${item.id}`}
-        renderItem={({ item }) => {
-          return (
-            <View>
-              <Text>{item.title}</Text>
-            </View>
-          )
-        }}
-      />
-
+      <HeaderSearch iconMic={mic} handeChangeText={handeChangeText} />
+      <View style={styles.divider} />
+      <View style={styles.viewWapper}>
+        <FlatList
+          data={filtered}
+          keyExtractor={(item) => `List search ${item.id}`}
+          extraData={listSearch}
+          renderItem={({ item }) => {
+            return (
+              <TouchableOpacity onPress={() => navigation.navigate(Screen.SearchResult)}>
+                <View style={styles.viewItem}>
+                  <Text style={styles.titleItem}>
+                    {item.title}
+                  </Text>
+                </View>
+              </TouchableOpacity>
+            )
+          }}
+        />
+      </View>
     </View>
   )
 }
 
 const styles = StyleSheet.create({
+  viewItem: { padding: mainPaddingH },
+  titleItem: {
+    ...TypoGrayphy.bodyNormalTextRegular,
+    color: Colors.neutralGrey,
+  },
+  viewWapper: { marginTop: mainPaddingH, paddingHorizontal: mainPaddingH },
+  divider: { borderTopColor: Colors.neutralLine, borderTopWidth: StyleSheet.hairlineWidth },
   container: {
-    backgroundColor: Colors.primaryBlue,
-    padding: mainPaddingH,
-    borderRadius: 5 * calWidth,
-    justifyContent: 'center',
-    alignItems: 'center',
+    flex: 1,
   },
   textButton: {
     color: 'white',

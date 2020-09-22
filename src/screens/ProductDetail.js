@@ -11,12 +11,15 @@ import Rating from '../components/Rating'
 import {
   Text, SelecColorOption, ButtonComponent, Header,
 } from '../components'
-import { TypoGrayphy, Colors } from '../../assets/styles'
+import {
+  TypoGrayphy, Colors, calWidth, mainPaddingH,
+} from '../../assets/styles'
 import SelecSizeOption from '../components/SelecSizeOption'
 import ProductCart from '../components/ProductCart'
+import { Screen } from '../constants'
 
 const { width } = Dimensions.get('window')
-const calWidth = width / 375
+// const calWidth = width / 375
 const Fonts = {
   fontPoppins: {
     fontFamily: 'Poppins-Regular',
@@ -62,17 +65,10 @@ const ProducDetail = ({ navigation, route }) => {
   const handlePagination = (index, total) => {
     const paginationView = []
     for (let paginationIndex = 0; paginationIndex < total; paginationIndex++) {
-      paginationView.push(<View style={{
-        width: 8 * calWidth,
-        height: 8 * calWidth,
-        borderRadius: 4 * calWidth,
-        backgroundColor: paginationIndex === index ? Colors.primaryBlue : Colors.neutralGrey,
-        marginRight: 8 * calWidth,
-      }}
-      />)
+      paginationView.push(<View style={[styles.viewDot, { backgroundColor: paginationIndex === index ? Colors.primaryBlue : Colors.neutralGrey }]} />)
     }
     return (
-      <View style={{ flexDirection: 'row', justifyContent: 'center', paddingVertical: 16 * calWidth }}>
+      <View style={styles.viewPagination}>
         {paginationView}
       </View>
     )
@@ -85,7 +81,7 @@ const ProducDetail = ({ navigation, route }) => {
       <Header title={nameProduct} navigation={navigation} icon={plus} />
       <ScrollView>
         <View>
-          <View style={{ width, height: 260 * calWidth }}>
+          <View style={styles.viewSwiper}>
             <Swiper
               showsPagination
               loop={false}
@@ -93,24 +89,28 @@ const ProducDetail = ({ navigation, route }) => {
             >
               {products.map((item) => {
                 return (
-                  <Image key={`List Image ${Math.random()}`} source={item.image} style={styles.image} resizeMode="cover" />
+                  <Image
+                    key={`List Image ${Math.random()}`}
+                    source={item.image}
+                    style={styles.image}
+                    resizeMode="cover"
+                  />
                 )
               })}
             </Swiper>
           </View>
-
-          <View style={{ flex: 1, paddingLeft: 16 * calWidth }}>
-            <View style={{ paddingRight: 16 * calWidth }}>
-              <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+          <View style={styles.viewWapper}>
+            <View style={styles.viewTitle}>
+              <View style={styles.viewTileRow}>
                 <Text style={styles.nameProduct}>Nike Air Zoom Pegasus 36 Miami</Text>
-                <Image source={iconFavorite} style={{ width: 24 * calWidth, height: 24 * calWidth }} resizeMode="contain" />
+                <Image source={iconFavorite} style={styles.iconFavorite} resizeMode="contain" />
               </View>
               <Rating rating="8" />
               <Text style={styles.price}>
                 $299,43
               </Text>
             </View>
-            <View style={{ paddingTop: 24 * calWidth }}>
+            <View style={styles.viewPadding}>
               <Text style={styles.titleHeaderContent}>
                 Select Size
               </Text>
@@ -130,7 +130,7 @@ const ProducDetail = ({ navigation, route }) => {
                 keyExtractor={(item, index) => `List nums ${index}`}
               />
             </View>
-            <View style={{ paddingTop: 24 * calWidth }}>
+            <View style={styles.viewPadding}>
               <Text style={styles.titleHeaderContent}>
                 Select Color
               </Text>
@@ -140,38 +140,27 @@ const ProducDetail = ({ navigation, route }) => {
                 showsHorizontalScrollIndicator={false}
                 renderItem={({ item }) => {
                   return (
-
                     <SelecColorOption
                       itemColor={item}
                       handleChooseColor={(color) => {
-                        // this.setState({
-                        //   currentColor: color,
-                        // })
                         setCurrentColor(color)
                       }}
                       isSelected={item === currentColor}
                     />
-
                   )
                 }}
                 keyExtractor={(item, index) => `List Color ${index}`}
               />
             </View>
-            <View style={{ paddingTop: 24 * calWidth, paddingRight: 16 * calWidth }}>
-              <Text style={{
-                ...TypoGrayphy.heading5, marginBottom: 12 * calWidth,
-              }}
-              >
+            <View style={styles.viewCateDetail}>
+              <Text style={styles.titleHeaderContent}>
                 Specification
               </Text>
               <View>
-                <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+                <View style={styles.viewSpecition}>
                   <Text>Shown:</Text>
                   <View>
-                    <Text style={{
-                      textAlign: 'right', color: Colors.neutralGrey,
-                    }}
-                    >
+                    <Text style={styles.contentSpecication}>
                       Laser
                       {'\n'}
                       Blue/Anthracite/Watermel
@@ -180,45 +169,36 @@ const ProducDetail = ({ navigation, route }) => {
                     </Text>
                   </View>
                 </View>
-                <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginTop: 16 * calWidth }}>
+                <View style={styles.viewSpecitionStyle}>
                   <Text>Style:</Text>
-                  <Text style={{
-                    textAlign: 'right', color: Colors.neutralGrey,
-                  }}
-                  >
+                  <Text style={styles.contentSpecication}>
                     CD0113-400
                   </Text>
                 </View>
               </View>
             </View>
-            <View style={{ paddingTop: 24 * calWidth, paddingRight: 16 * calWidth }}>
-              <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
-                <Text style={{
-                  ...TypoGrayphy.heading5, marginBottom: 12 * calWidth,
-                }}
-                >
+            <View style={styles.viewCateDetail}>
+              <View style={styles.viewReview}>
+                <Text style={styles.titleHeaderContent}>
                   Review Product
                 </Text>
-                <TouchableOpacity onPress={() => navigation.navigate('WriteReview')}>
-                  <Text style={{ ...TypoGrayphy.linkLargeTextBold14 }}>See More</Text>
+                <TouchableOpacity onPress={() => navigation.navigate(Screen.WriteReview)}>
+                  <Text style={styles.labelSeeMoreReview}>See More</Text>
                 </TouchableOpacity>
               </View>
-              <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+              <View style={styles.viewRating}>
                 <Rating rating="9" />
-                <Text style={{ marginLeft: 8 * calWidth, ...Fonts.fontPoppinsBold, color: '#9098B1' }}>4.5 (5 Review)</Text>
+                <Text style={styles.titleRating}>4.5 (5 Review)</Text>
               </View>
               <View style={styles.contentReview}>
-                <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                  <Image source={avatar} style={{ width: 48 * calWidth, height: 48 * calWidth, marginTop: 8 * calWidth }} />
-                  <View style={{
-                    justifyContent: 'space-between', height: 48 * calWidth, marginLeft: 16 * calWidth,
-                  }}
-                  >
-                    <Text style={{ ...TypoGrayphy.heading5 }}>James Lawson</Text>
+                <View style={styles.viewRating}>
+                  <Image source={avatar} style={styles.avatarReview} />
+                  <View style={styles.viewUserReview}>
+                    <Text style={styles.titleUserReview}>James Lawson</Text>
                     <Rating rating="8" />
                   </View>
                 </View>
-                <Text style={{ marginVertical: 16 * calWidth }}>
+                <Text style={styles.viewContentReview}>
                   air max are always very comfortable fit, clean and just perfect in every way.
                   just the box was too small and scrunched the sneakers up a little bit,
                   not sure if the box was always this small but the 90s are and will always be one of my favorites.
@@ -228,21 +208,17 @@ const ProducDetail = ({ navigation, route }) => {
                   horizontal
                   renderItem={({ item }) => {
                     return (
-                      <Image style={{ width: 72 * calWidth, height: 72 * calWidth, marginRight: 12 * calWidth }} source={item.image} />
+                      <Image style={styles.imageReview} source={item.image} />
                     )
                   }}
                   keyExtractor={(item, index) => `List review ${index}`}
                 />
-                <Text style={{
-                  color: '#9098B1', fontSize: 10, ...Fonts.fontPoppins, marginTop: 16 * calWidth,
-                }}
-                >
+                <Text style={styles.timeReview}>
                   December 10, 2016
                 </Text>
-
               </View>
             </View>
-            <View style={{ paddingTop: 24 * calWidth, paddingRight: 16 * calWidth }}>
+            <View style={styles.viewCateDetail}>
               <Text style={styles.titleHeaderContent}>You Might Also Like</Text>
               <FlatList
                 data={productLikes}
@@ -250,8 +226,7 @@ const ProducDetail = ({ navigation, route }) => {
                 showsHorizontalScrollIndicator={false}
                 renderItem={({ item }) => {
                   return (
-                    <ProductCart item={item} margin={calWidth * 16} />
-
+                    <ProductCart item={item} margin={mainPaddingH} />
                   )
                 }}
                 keyExtractor={(item, index) => `List product like ${index}`}
@@ -260,13 +235,7 @@ const ProducDetail = ({ navigation, route }) => {
           </View>
         </View>
       </ScrollView>
-      <View style={{
-        position: 'absolute',
-        bottom: 16,
-        width,
-        // alignItems: 'center',
-      }}
-      >
+      <View style={styles.buttonAddCart}>
         <ButtonComponent name="Add To Cart" handleClick={handleAddToCart} />
       </View>
       <SafeAreaView />
@@ -274,8 +243,44 @@ const ProducDetail = ({ navigation, route }) => {
   )
 }
 const styles = StyleSheet.create({
-  contentReview: {
-
+  buttonAddCart: {
+    position: 'absolute',
+    bottom: mainPaddingH,
+    width,
+    // alignItems: 'center',
+  },
+  timeReview: {
+    color: '#9098B1', fontSize: 10, ...Fonts.fontPoppins, marginTop: mainPaddingH,
+  },
+  imageReview: { width: 72 * calWidth, height: 72 * calWidth, marginRight: 12 * calWidth },
+  viewContentReview: { marginVertical: mainPaddingH },
+  titleUserReview: { ...TypoGrayphy.heading5 },
+  titleRating: { marginLeft: 8 * calWidth, ...Fonts.fontPoppinsBold, color: '#9098B1' },
+  viewUserReview: {
+    justifyContent: 'space-between', height: 48 * calWidth, marginLeft: mainPaddingH,
+  },
+  avatarReview: { width: 48 * calWidth, height: 48 * calWidth, marginTop: 8 * calWidth },
+  viewRating: { flexDirection: 'row', alignItems: 'center' },
+  labelSeeMoreReview: { ...TypoGrayphy.linkLargeTextBold14 },
+  viewReview: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' },
+  viewSpecitionStyle: { flexDirection: 'row', justifyContent: 'space-between', marginTop: mainPaddingH },
+  contentSpecication: {
+    textAlign: 'right', color: Colors.neutralGrey,
+  },
+  viewSpecition: { flexDirection: 'row', justifyContent: 'space-between' },
+  viewCateDetail: { paddingTop: 24 * calWidth, paddingRight: mainPaddingH },
+  viewPadding: { paddingTop: 24 * calWidth },
+  iconFavorite: { width: 24 * calWidth, height: 24 * calWidth },
+  viewTileRow: { flexDirection: 'row', justifyContent: 'space-between' },
+  viewTitle: { paddingRight: mainPaddingH },
+  viewWapper: { flex: 1, paddingLeft: mainPaddingH },
+  viewSwiper: { width, height: 260 * calWidth },
+  viewPagination: { flexDirection: 'row', justifyContent: 'center', paddingVertical: mainPaddingH },
+  viewDot: {
+    width: 8 * calWidth,
+    height: 8 * calWidth,
+    borderRadius: 4 * calWidth,
+    marginRight: 8 * calWidth,
   },
   titleHeaderContent: {
     ...TypoGrayphy.heading5,
@@ -284,8 +289,8 @@ const styles = StyleSheet.create({
 
   circleSelected: {
     backgroundColor: '#fff',
-    width: 16 * calWidth,
-    height: 16 * calWidth,
+    width: mainPaddingH,
+    height: mainPaddingH,
     borderRadius: 8 * calWidth,
   },
   circlePoint: {
@@ -297,7 +302,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#fff',
-    marginRight: 16 * calWidth,
+    marginRight: mainPaddingH,
   },
   price: {
     ...TypoGrayphy.heading3,
@@ -318,7 +323,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    paddingHorizontal: 16 * calWidth,
+    paddingHorizontal: mainPaddingH,
     paddingBottom: 28 * calWidth,
     borderBottomColor: '#EBF0FF',
     borderBottomWidth: StyleSheet.hairlineWidth,

@@ -12,6 +12,7 @@ import {
 import {
   userBlue, bag, location, card,
 } from '../../assets/images'
+import { Screen } from '../constants'
 
 const AccountScreen = ({ navigation }) => {
   console.tron.log({ navigation })
@@ -26,26 +27,26 @@ const AccountScreen = ({ navigation }) => {
       >
         <Text style={styles.headerTitle}>Account</Text>
       </View>
-      <View style={{ flex: 1 }}>
-        <TouchableOpacity onPress={() => navigation.navigate('Profile')}>
+      <View style={styles.viewWapper}>
+        <TouchableOpacity onPress={() => navigation.navigate(Screen.Profile)}>
           <View style={styles.acountView}>
             <Image source={userBlue} style={styles.image} resizeMode="contain" />
             <Text style={styles.title}>Profile</Text>
           </View>
         </TouchableOpacity>
-        <TouchableOpacity onPress={() => navigation.navigate('Order')}>
+        <TouchableOpacity onPress={() => navigation.navigate(Screen.Order)}>
           <View style={styles.acountView}>
             <Image source={bag} style={styles.image} resizeMode="contain" />
             <Text style={styles.title}>Other</Text>
           </View>
         </TouchableOpacity>
-        <TouchableOpacity onPress={() => navigation.navigate('ShipTo')}>
+        <TouchableOpacity onPress={() => navigation.navigate(Screen.Address)}>
           <View style={styles.acountView}>
             <Image source={location} style={styles.image} resizeMode="contain" />
             <Text style={styles.title}>Address</Text>
           </View>
         </TouchableOpacity>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={() => navigation.navigate(Screen.Payment)}>
           <View style={styles.acountView}>
             <Image source={card} style={styles.image} resizeMode="contain" />
             <Text style={styles.title}>Payment</Text>
@@ -57,6 +58,7 @@ const AccountScreen = ({ navigation }) => {
 }
 
 const styles = StyleSheet.create({
+  viewWapper: { flex: 1 },
   container: {
     flex: 1,
   },

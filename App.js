@@ -37,7 +37,9 @@ import {
   ChangePass,
   Order,
 } from './src/screens/account'
-import { Explore, SearchScreen } from './src/screens/explore'
+import {
+  CategoryScreen, Explore, SearchResult, SearchScreen, SortByScreen,
+} from './src/screens/explore'
 import {
   CartScreen,
   ShipTo,
@@ -155,6 +157,18 @@ const ExploreStack = ({ navigation, route }) => {
         name={Screen.ProductDetail}
         component={ProductDetail}
       />
+      <Stack.Screen
+        name={Screen.SearchResult}
+        component={SearchResult}
+      />
+      <Stack.Screen
+        name={Screen.Category}
+        component={CategoryScreen}
+      />
+      <Stack.Screen
+        name={Screen.SortByScreen}
+        component={SortByScreen}
+      />
     </Stack.Navigator>
   )
 }
@@ -167,35 +181,35 @@ const CartStack = ({ navigation, route }) => {
   }
   return (
     <Stack.Navigator
-      initialRouteName="CartScreen"
+      initialRouteName={Screen.CartScreen}
       screenOptions={{ headerShown: false }}
     >
       <Stack.Screen
-        name="CartScreen"
+        name={Screen.CartScreen}
         component={CartScreen}
       />
       <Stack.Screen
-        name="ShipTo"
+        name={Screen.ShipTo}
         component={ShipTo}
       />
       <Stack.Screen
-        name="Payment"
+        name={Screen.Payment}
         component={PaymentMethod}
       />
       <Stack.Screen
-        name="Credit"
+        name={Screen.Credit}
         component={CreditCard}
       />
       <Stack.Screen
-        name="AddCard"
+        name={Screen.AddCard}
         component={AddCard}
       />
       <Stack.Screen
-        name="Address"
+        name={Screen.Address}
         component={Address}
       />
       <Stack.Screen
-        name="DeleteAddress"
+        name={Screen.DeleteAddress}
         component={DeleteAddress}
       />
       <Stack.Screen
@@ -216,45 +230,45 @@ const AccountStack = ({ navigation, route }) => {
   }
   return (
     <Stack.Navigator
-      initialRouteName="AccountScreen"
+      initialRouteName={Screen.AccountScreen}
       screenOptions={{
         headerShown: false,
       }}
     >
       <Stack.Screen
-        name="AccountScreen"
+        name={Screen.AccountScreen}
         component={AccountScreen}
       />
       <Stack.Screen
-        name="Profile"
+        name={Screen.Profile}
         component={Profile}
       />
       <Stack.Screen
-        name="ChangeName"
+        name={Screen.ChangeName}
         component={ChangeName}
       />
       <Stack.Screen
-        name="Gender"
+        name={Screen.Gender}
         component={Gender}
       />
       <Stack.Screen
-        name="BirthDay"
+        name={Screen.BirthDay}
         component={BirthDay}
       />
       <Stack.Screen
-        name="Email"
+        name={Screen.Email}
         component={Email}
       />
       <Stack.Screen
-        name="Phone"
+        name={Screen.Phone}
         component={Phone}
       />
       <Stack.Screen
-        name="ChangePass"
+        name={Screen.ChangePass}
         component={ChangePass}
       />
       <Stack.Screen
-        name="Order"
+        name={Screen.Order}
         component={Order}
       />
     </Stack.Navigator>
@@ -267,7 +281,7 @@ const App = () => {
       <NavigationContainer>
         <Tab.Navigator>
           <Tab.Screen
-            name="HomeScreen"
+            name={Screen.HomeScreen}
             component={HomeStack}
             options={{
               tabBarIcon: ({ color }) => (
@@ -285,7 +299,7 @@ const App = () => {
             }}
           />
           <Tab.Screen
-            name="Explore"
+            name={Screen.Explore}
             component={ExploreStack}
             options={{
               tabBarIcon: ({ color }) => (
@@ -299,11 +313,11 @@ const App = () => {
                   resizeMode="contain"
                 />
               ),
-              tabBarLabel: 'Explore',
+              tabBarLabel: Screen.Explore,
             }}
           />
           <Tab.Screen
-            name="CartScreen"
+            name={Screen.CartScreen}
             component={CartStack}
             options={{
               tabBarIcon: ({ color }) => (
@@ -321,7 +335,7 @@ const App = () => {
             }}
           />
           <Tab.Screen
-            name="OfferScreen"
+            name={Screen.OfferScreen}
             options={{
               tabBarIcon: ({ color }) => (
                 <Image
@@ -339,7 +353,7 @@ const App = () => {
             component={OfferScreen}
           />
           <Tab.Screen
-            name="AccountScreen"
+            name={Screen.AccountScreen}
             options={{
               tabBarIcon: ({ color }) => (
                 <Image
