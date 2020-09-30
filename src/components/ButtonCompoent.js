@@ -28,11 +28,9 @@ const styles = StyleSheet.create({
   button: {
     justifyContent: 'center',
     alignItems: 'center',
-    height: 57 * calWidth,
+    padding: mainPaddingH,
     borderRadius: 5 * calWidth,
     backgroundColor: Colors.primaryBlue,
-    marginHorizontal: mainPaddingH,
-    // marginBottom: mainPaddingH,
   },
   textButton: {
     ...TypoGrayphy.bodyMediumTextBold,

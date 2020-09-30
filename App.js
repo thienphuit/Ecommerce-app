@@ -6,7 +6,7 @@
  * @flow strict-local
  */
 import 'react-native-gesture-handler'
-import React from 'react'
+import React, { useState } from 'react'
 import { Image } from 'react-native'
 import { NavigationContainer } from '@react-navigation/native'
 import { createStackNavigator } from '@react-navigation/stack'
@@ -18,8 +18,8 @@ import {
   AccountScreen,
   ProductDetail,
   OfferScreen,
-  FavoriteProduct,
-  WriteReview,
+  FavoriteProduct, LoginScreen,
+  WriteReview, SplashScreen, RegisterScreen, SupperFlashSale,
 } from './src/screens'
 import {
   Notification,
@@ -58,7 +58,6 @@ import {
 } from './assets/images'
 import { calWidth } from './assets/styles'
 import { store } from './src/redux/index'
-import { SupperFlashSale } from './src/screens/home'
 import { Screen } from './src/constants'
 
 const Stack = createStackNavigator()
@@ -294,102 +293,137 @@ const AccountStack = ({ navigation, route }) => {
   )
 }
 
+const BottomStackScreen = () => {
+  return (
+    <Tab.Navigator>
+      <Tab.Screen
+        name={Screen.HomeScreen}
+        component={HomeStack}
+        options={{
+          tabBarIcon: ({ color }) => (
+            <Image
+              source={home}
+              style={{
+                width: 24 * calWidth,
+                height: 24 * calWidth,
+                tintColor: color,
+              }}
+              resizeMode="contain"
+            />
+          ),
+          tabBarLabel: 'Home',
+        }}
+      />
+      <Tab.Screen
+        name={Screen.Explore}
+        component={ExploreStack}
+        options={{
+          tabBarIcon: ({ color }) => (
+            <Image
+              source={search}
+              style={{
+                width: 24 * calWidth,
+                height: 24 * calWidth,
+                tintColor: color,
+              }}
+              resizeMode="contain"
+            />
+          ),
+          tabBarLabel: Screen.Explore,
+        }}
+      />
+      <Tab.Screen
+        name={Screen.CartScreen}
+        component={CartStack}
+        options={{
+          tabBarIcon: ({ color }) => (
+            <Image
+              source={cart}
+              style={{
+                width: 24 * calWidth,
+                height: 24 * calWidth,
+                tintColor: color,
+              }}
+              resizeMode="contain"
+            />
+          ),
+          tabBarLabel: 'Cart',
+        }}
+      />
+      <Tab.Screen
+        name={Screen.OfferScreen}
+        options={{
+          tabBarIcon: ({ color }) => (
+            <Image
+              source={offer}
+              style={{
+                width: 24 * calWidth,
+                height: 24 * calWidth,
+                tintColor: color,
+              }}
+              resizeMode="contain"
+            />
+          ),
+          tabBarLabel: 'Offer',
+        }}
+        component={OfferScreen}
+      />
+      <Tab.Screen
+        name={Screen.AccountScreen}
+        options={{
+          tabBarIcon: ({ color }) => (
+            <Image
+              source={user}
+              style={{
+                width: 24 * calWidth,
+                height: 24 * calWidth,
+                tintColor: color,
+              }}
+              resizeMode="contain"
+            />
+          ),
+          tabBarLabel: 'Account',
+        }}
+        component={AccountStack}
+      />
+    </Tab.Navigator>
+
+  )
+}
+const AuthStack = createStackNavigator()
+const AuthStackScreen = () => (
+  <AuthStack.Navigator screenOptions={{
+    headerShown: false,
+  }}
+  >
+    <AuthStack.Screen name={Screen.SplashScreen} component={SplashScreen} />
+    <AuthStack.Screen name={Screen.Login} component={LoginScreen} />
+    <AuthStack.Screen name={Screen.Register} component={RegisterScreen} />
+  </AuthStack.Navigator>
+)
+
 const App = () => {
+  const [user, setUser] = useState('')
   return (
     <Provider store={store}>
       <NavigationContainer>
-        <Tab.Navigator>
-          <Tab.Screen
-            name={Screen.HomeScreen}
-            component={HomeStack}
-            options={{
-              tabBarIcon: ({ color }) => (
-                <Image
-                  source={home}
-                  style={{
-                    width: 24 * calWidth,
-                    height: 24 * calWidth,
-                    tintColor: color,
-                  }}
-                  resizeMode="contain"
-                />
-              ),
-              tabBarLabel: 'Home',
-            }}
+        {/* <Stack.Navigator
+          screenOptions={{
+            headerShown: false,
+          }}
+        >
+          <Stack.Screen
+            name={Screen.SplashScreen}
+            component={SplashScreen}
           />
-          <Tab.Screen
-            name={Screen.Explore}
-            component={ExploreStack}
-            options={{
-              tabBarIcon: ({ color }) => (
-                <Image
-                  source={search}
-                  style={{
-                    width: 24 * calWidth,
-                    height: 24 * calWidth,
-                    tintColor: color,
-                  }}
-                  resizeMode="contain"
-                />
-              ),
-              tabBarLabel: Screen.Explore,
-            }}
+          <Stack.Screen
+            name="BottomTabScreen"
+            component={BottomStackScreen}
           />
-          <Tab.Screen
-            name={Screen.CartScreen}
-            component={CartStack}
-            options={{
-              tabBarIcon: ({ color }) => (
-                <Image
-                  source={cart}
-                  style={{
-                    width: 24 * calWidth,
-                    height: 24 * calWidth,
-                    tintColor: color,
-                  }}
-                  resizeMode="contain"
-                />
-              ),
-              tabBarLabel: 'Cart',
-            }}
-          />
-          <Tab.Screen
-            name={Screen.OfferScreen}
-            options={{
-              tabBarIcon: ({ color }) => (
-                <Image
-                  source={offer}
-                  style={{
-                    width: 24 * calWidth,
-                    height: 24 * calWidth,
-                    tintColor: color,
-                  }}
-                  resizeMode="contain"
-                />
-              ),
-              tabBarLabel: 'Offer',
-            }}
-            component={OfferScreen}
-          />
-          <Tab.Screen
-            name={Screen.AccountScreen}
-            options={{
-              tabBarIcon: ({ color }) => (
-                <Image
-                  source={user}
-                  style={{
-                    width: 24 * calWidth,
-                    height: 24 * calWidth,
-                    tintColor: color,
-                  }}
-                  resizeMode="contain"
-                />
-              ),
-              tabBarLabel: 'Account',
-            }}
-            component={AccountStack}
-          />
-        </Tab.Navigator>
+        </Stack.Navigator> */}
+
+        {user ? <BottomStackScreen /> : <AuthStackScreen />}
+
       </NavigationContainer>
     </Provider>
   )

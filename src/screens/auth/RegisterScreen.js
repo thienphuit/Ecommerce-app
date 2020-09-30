@@ -2,13 +2,13 @@ import React from 'react'
 import {
   View, StyleSheet, SafeAreaView, Image, TextInput, Dimensions, TouchableOpacity, ScrollView,
 } from 'react-native'
-import { Text, Button } from '../components'
+import { Text, Button } from '../../components'
 import {
   logoWhite, message, passIcon,
-} from '../../assets/images'
+} from '../../../assets/images'
 import {
   TypoGrayphy, mainPaddingH, Colors, calWidth,
-} from '../../assets/styles'
+} from '../../../assets/styles'
 
 const { width } = Dimensions.get('window')
 

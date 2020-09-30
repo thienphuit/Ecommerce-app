@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
-import SplashScreen from 'react-native-splash-screen'
 import {
   View, StyleSheet, SafeAreaView, Dimensions, FlatList, ScrollView,
 } from 'react-native'
 
+// import SplashScreenLib from 'react-native-splash-screen'
 import {
   Text, SwiperHorizontal, ProductCart, HeaderComponent, SaleOffComponent,
 } from '../components'
@@ -25,15 +25,15 @@ const HomeScreen = (props) => {
   const handleFocus = () => {
     setOnFocus(true)
   }
+  // useEffect(() => {
+  //   SplashScreenLib.hide()
+  // }, [])
   const productLikes = useSelector((state) => state.products.productLikes)
   const categoryList = useSelector((state) => state.products.categorys)
   const swipperList = useSelector((state) => state.products.swipperList)
   // const getData = async () => {
   //   dispatch(searchActions.getSearchAction())
   // }
-  useEffect(() => {
-    SplashScreen.hide()
-  }, [])
   return (
     <View style={styles.container}>
       <SafeAreaView />

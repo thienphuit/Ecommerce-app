@@ -2,13 +2,13 @@ import React from 'react'
 import {
   View, StyleSheet, SafeAreaView, Image, TextInput, Dimensions, TouchableOpacity, ScrollView,
 } from 'react-native'
-import { Text, ButtonComponent } from '../components'
+import { Text, ButtonComponent } from '../../components'
 import {
   logoWhite, message, iconGoogle, iconFB,
-} from '../../assets/images'
+} from '../../../assets/images'
 import {
   TypoGrayphy, mainPaddingH, Colors, calWidth,
-} from '../../assets/styles'
+} from '../../../assets/styles'
 
 const { width } = Dimensions.get('window')
 
@@ -64,12 +64,12 @@ const LoginScreen = () => {
           <TouchableOpacity>
             <Text style={styles.labelForgotPass}>Forget password</Text>
           </TouchableOpacity>
-          <View style={styles.viewDontAccount}>
-            <Text style={styles.titleDontAccount}>Don`t have a account?</Text>
-            <TouchableOpacity>
+          <TouchableOpacity onPress={() => { }}>
+            <View style={styles.viewDontAccount}>
+              <Text style={styles.titleDontAccount}>Don`t have a account?</Text>
               <Text style={styles.buttonRegister}>Register</Text>
-            </TouchableOpacity>
-          </View>
+            </View>
+          </TouchableOpacity>
         </View>
       </View>
     </ScrollView>
@@ -151,6 +151,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
+    marginHorizontal: mainPaddingH,
   },
   // viewHeader: {  },
 })

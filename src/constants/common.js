@@ -30,6 +30,9 @@ export const Screen = {
   Phone: 'Phone',
   ChangePass: 'ChangePass',
   Order: 'Order',
+  SplashScreen: 'SplashScreen',
+  Login: 'Login',
+  Register: 'Register',
 }
 
 export const Label = {
