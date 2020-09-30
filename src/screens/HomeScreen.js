@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
-import { useSelector, useDispatch } from 'react-redux'
+import { useSelector } from 'react-redux'
+import SplashScreen from 'react-native-splash-screen'
 import {
   View, StyleSheet, SafeAreaView, Dimensions, FlatList, ScrollView,
 } from 'react-native'
@@ -13,30 +14,30 @@ import {
 import { promotionImage } from '../../assets/images'
 import CategoryItem from '../components/CategoryItem'
 import { Screen } from '../constants/index'
-import { searchActions } from '../redux/actions'
+// import { searchActions } from '../redux/actions'
 
 const { width } = Dimensions.get('window')
 
 const HomeScreen = (props) => {
   const { navigation } = props
   const [onFocus, setOnFocus] = useState(false)
-  const dispatch = useDispatch()
+  // const dispatch = useDispatch()
   const handleFocus = () => {
     setOnFocus(true)
   }
   const productLikes = useSelector((state) => state.products.productLikes)
   const categoryList = useSelector((state) => state.products.categorys)
   const swipperList = useSelector((state) => state.products.swipperList)
-  const getData = async () => {
-    dispatch(searchActions.getSearchAction())
-  }
+  // const getData = async () => {
+  //   dispatch(searchActions.getSearchAction())
+  // }
   useEffect(() => {
-    getData()
+    SplashScreen.hide()
   }, [])
   return (
     <View style={styles.container}>
       <SafeAreaView />
-      <HeaderComponent navigation={navigation} handleFocus={handleFocus} onFocus={onFocus} />
+      <HeaderComponent navigation={navigation} handleFocus={handleFocus} onFocus={onFocus} handleClick={() => navigation.navigate(Screen.SearchScreen)} />
       <View style={styles.divider} />
       <ScrollView
         showsVerticalScrollIndicator={false}
@@ -142,7 +143,6 @@ const HomeScreen = (props) => {
           <View style={{ height: 100 }} />
         </View>
       </ScrollView>
-
       <SafeAreaView />
     </View>
   )

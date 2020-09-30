@@ -23,6 +23,7 @@ const init = {
     { id: 1, title: 'Nike Air Max 97 Utility', image: productLike },
     { id: 2, title: 'Nike Air Vapormax 360', image: shoes_2 },
     { id: 3, title: 'Nike Air Max 270 React ENG', image: phoduct2 },
+    { id: 4, title: 'Nike Air Max 270 React ENG', image: phoduct2 },
   ],
   categorys: [
     { id: 1, image: shirt, title: 'Man shirt' },

@@ -250,12 +250,23 @@ const styles = StyleSheet.create({
     // alignItems: 'center',
   },
   timeReview: {
-    color: '#9098B1', fontSize: 10, ...Fonts.fontPoppins, marginTop: mainPaddingH,
+    color: Colors.neutralGrey,
+    fontSize: 10,
+    ...Fonts.fontPoppins,
+    marginTop: mainPaddingH,
   },
-  imageReview: { width: 72 * calWidth, height: 72 * calWidth, marginRight: 12 * calWidth },
+  imageReview: {
+    width: 72 * calWidth,
+    height: 72 * calWidth,
+    marginRight: 12 * calWidth,
+  },
   viewContentReview: { marginVertical: mainPaddingH },
   titleUserReview: { ...TypoGrayphy.heading5 },
-  titleRating: { marginLeft: 8 * calWidth, ...Fonts.fontPoppinsBold, color: '#9098B1' },
+  titleRating: {
+    marginLeft: 8 * calWidth,
+    ...Fonts.fontPoppinsBold,
+    color: Colors.neutralGrey,
+  },
   viewUserReview: {
     justifyContent: 'space-between', height: 48 * calWidth, marginLeft: mainPaddingH,
   },
@@ -288,7 +299,7 @@ const styles = StyleSheet.create({
   },
 
   circleSelected: {
-    backgroundColor: '#fff',
+    backgroundColor: Colors.backgroudWhite,
     width: mainPaddingH,
     height: mainPaddingH,
     borderRadius: 8 * calWidth,
@@ -297,11 +308,11 @@ const styles = StyleSheet.create({
     width: 48 * calWidth,
     height: 48 * calWidth,
     borderRadius: 24 * calWidth,
-    borderColor: '#EBF0FF',
+    borderColor: Colors.neutralLine,
     borderWidth: StyleSheet.hairlineWidth * 2,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#fff',
+    backgroundColor: Colors.backgroudWhite,
     marginRight: mainPaddingH,
   },
   price: {
@@ -325,7 +336,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     paddingHorizontal: mainPaddingH,
     paddingBottom: 28 * calWidth,
-    borderBottomColor: '#EBF0FF',
+    borderBottomColor: Colors.neutralLine,
     borderBottomWidth: StyleSheet.hairlineWidth,
     paddingTop: 26 * calWidth,
   },

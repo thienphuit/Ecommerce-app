@@ -1,22 +1,22 @@
 import React from 'react'
 import {
-  View, SafeAreaView, StyleSheet, TextInput, TouchableOpacity, FlatList,
+  View, SafeAreaView, StyleSheet, TextInput, TouchableOpacity, FlatList, ScrollView,
 } from 'react-native'
-import { ScrollView } from 'react-native-gesture-handler'
+import { useSelector } from 'react-redux'
 import { Text, ProductCartHorizontal, ButtonComponent } from '../../components'
 import {
   TypoGrayphy, Colors, calWidth, mainPaddingH,
 } from '../../../assets/styles'
-import { shoesImage, shoes_2 } from '../../../assets/images'
-
-const products = [
-  { image: shoesImage },
-  { image: shoes_2 },
-  { image: shoesImage },
-]
 
 const CartScreen = (props) => {
   const { navigation } = props
+
+  const listCart = useSelector((state) => state.cart.cartProduct)
+  const sumPrice = () => {
+    return listCart.reduce((count, item) => {
+      return count + item.quantity * item.price
+    }, 0)
+  }
   return (
     <View style={styles.container}>
       <SafeAreaView />
@@ -28,10 +28,12 @@ const CartScreen = (props) => {
       >
         <View style={styles.viewWapper}>
           <FlatList
-            data={products}
-            keyExtractor={(item, index) => `list cart -${index}`}
+            data={listCart}
+            keyExtractor={(item) => `list cart -${item.id}`}
             renderItem={({ item }) => <View style={{ marginTop: mainPaddingH }}>
-              <ProductCartHorizontal item={item} />
+              <ProductCartHorizontal
+                item={item}
+              />
             </View>}
           />
           <View style={styles.viewCoupon}>
@@ -44,8 +46,11 @@ const CartScreen = (props) => {
           </View>
           <View style={styles.viewTotalPrice}>
             <View style={styles.viewTotalItem}>
-              <Text style={styles.labelTotal}>Items(3)</Text>
-              <Text>$598.86</Text>
+              <Text style={styles.labelTotal}>
+                Items
+                {`(${listCart.length})`}
+              </Text>
+              <Text>{sumPrice().toFixed()}</Text>
             </View>
             <View style={styles.viewLabel}>
               <Text style={styles.labelTotal}>Shipping</Text>
@@ -61,7 +66,6 @@ const CartScreen = (props) => {
               <Text style={[styles.totalPrice, { color: Colors.primaryBlue }]}>$128.00</Text>
             </View>
           </View>
-
         </View>
       </ScrollView>
       <View style={{ marginBottom: 20 }}>

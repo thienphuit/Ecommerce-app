@@ -65,11 +65,15 @@ const Stack = createStackNavigator()
 const Tab = createBottomTabNavigator()
 
 const HomeStack = ({ navigation, route }) => {
-  if (route.state && route.state.index > 0) {
-    navigation.setOptions({ tabBarVisible: false })
-  } else {
-    navigation.setOptions({ tabBarVisible: true })
-  }
+  React.useLayoutEffect(() => {
+    if (route.state && route.state.index > 0) {
+      navigation.setOptions({
+        tabBarVisible: false,
+      })
+    } else {
+      navigation.setOptions({ tabBarVisible: true })
+    }
+  }, [navigation, route])
   return (
     <Stack.Navigator
       screenOptions={{
@@ -118,11 +122,15 @@ const HomeStack = ({ navigation, route }) => {
 }
 
 const ExploreStack = ({ navigation, route }) => {
-  if (route.state && route.state.index > 0) {
-    navigation.setOptions({ tabBarVisible: false })
-  } else {
-    navigation.setOptions({ tabBarVisible: true })
-  }
+  React.useLayoutEffect(() => {
+    if (route.state && route.state.index > 0) {
+      navigation.setOptions({
+        tabBarVisible: false,
+      })
+    } else {
+      navigation.setOptions({ tabBarVisible: true })
+    }
+  }, [navigation, route])
   return (
     <Stack.Navigator
       screenOptions={{
@@ -174,11 +182,15 @@ const ExploreStack = ({ navigation, route }) => {
 }
 
 const CartStack = ({ navigation, route }) => {
-  if (route.state && route.state.index > 0) {
-    navigation.setOptions({ tabBarVisible: false })
-  } else {
-    navigation.setOptions({ tabBarVisible: true })
-  }
+  React.useLayoutEffect(() => {
+    if (route.state && route.state.index > 0) {
+      navigation.setOptions({
+        tabBarVisible: false,
+      })
+    } else {
+      navigation.setOptions({ tabBarVisible: true })
+    }
+  }, [navigation, route])
   return (
     <Stack.Navigator
       initialRouteName={Screen.CartScreen}
@@ -221,18 +233,21 @@ const CartStack = ({ navigation, route }) => {
 }
 
 const AccountStack = ({ navigation, route }) => {
-  if (route.state && route.state.index > 0) {
-    navigation.setOptions({
-      tabBarVisible: false,
-    })
-  } else {
-    navigation.setOptions({ tabBarVisible: true })
-  }
+  React.useLayoutEffect(() => {
+    if (route.state && route.state.index > 0) {
+      navigation.setOptions({
+        tabBarVisible: false,
+      })
+    } else {
+      navigation.setOptions({ tabBarVisible: true })
+    }
+  }, [navigation, route])
   return (
     <Stack.Navigator
       initialRouteName={Screen.AccountScreen}
       screenOptions={{
         headerShown: false,
+
       }}
     >
       <Stack.Screen
@@ -270,6 +285,10 @@ const AccountStack = ({ navigation, route }) => {
       <Stack.Screen
         name={Screen.Order}
         component={Order}
+      />
+      <Stack.Screen
+        name={Screen.Address}
+        component={Address}
       />
     </Stack.Navigator>
   )
@@ -371,7 +390,6 @@ const App = () => {
             component={AccountStack}
           />
         </Tab.Navigator>
-
       </NavigationContainer>
     </Provider>
   )

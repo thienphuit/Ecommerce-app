@@ -2,51 +2,68 @@ import React from 'react'
 import {
   View, Dimensions, StyleSheet, Image,
 } from 'react-native'
+import { useDispatch } from 'react-redux'
+import { TouchableOpacity } from 'react-native-gesture-handler'
 import { Colors, TypoGrayphy } from '../../assets/styles'
 import { love_24, trash } from '../../assets/images'
 import { Text, InputNumber } from '.'
+import { cartActions } from '../redux/actions'
 
 const { width } = Dimensions.get('window')
 const calWidth = width / 375
 const ProductCartHorizontal = (props) => {
   const { item } = props
+  const dispatch = useDispatch()
+
   return (
-    <View style={{
-      padding: 16 * calWidth,
-      borderColor: Colors.borderColor,
-      borderRadius: 5 * calWidth,
-      alignContent: 'center',
-      flexDirection: 'row',
-      height: 104 * calWidth,
-      borderWidth: StyleSheet.hairlineWidth,
-      width: width - 32,
-      marginRight: 8,
-    }}
-    >
-      <Image resizeMode="contain" source={item.image} style={{ width: 72 * calWidth, height: 72 * calWidth, borderRadius: 5 * calWidth }} />
-      <View style={{ marginLeft: 12, justifyContent: 'space-between', flex: 1 }}>
-        <View style={{
-          flexDirection: 'row', justifyContent: 'space-between',
-        }}
-        >
-          <Text style={{ width: 158 * calWidth, ...TypoGrayphy.heading6 }}>Nike Air Zoom Pegasus 36 Miami</Text>
-          <View style={{ flexDirection: 'row' }}>
-            <Image source={love_24} style={{ width: 24, height: 24, marginRight: 10 }} resizeMode="contain" />
-            <Image source={trash} style={{ width: 24, height: 24 }} resizeMode="contain" />
+    <View style={styles.viewCard}>
+      <Image resizeMode="contain" source={item.image} style={styles.imageCard} />
+      <View style={styles.viewWapper}>
+        <View style={styles.viewRow}>
+          <Text style={styles.title}>{item.title}</Text>
+          <View style={styles.flexRow}>
+            <Image source={love_24} style={[styles.iconImage, { marginRight: 10 * calWidth }]} resizeMode="contain" />
+            <TouchableOpacity onPress={() => dispatch(cartActions.cartDeleteAction(item.id))}>
+              <Image source={trash} style={styles.iconImage} resizeMode="contain" />
+            </TouchableOpacity>
           </View>
         </View>
-        <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+        <View style={styles.viewRow}>
           <Text style={{
             color: Colors.primaryBlue, ...TypoGrayphy.heading6,
           }}
           >
-            $534,33
+            {`$${item.price}`}
           </Text>
-          <InputNumber />
+          <InputNumber
+            number={item.quantity}
+            increate={() => dispatch(cartActions.cartIncreateAndDecreateAction(item.id, true))}
+            decreate={() => dispatch(cartActions.cartIncreateAndDecreateAction(item.id, false))}
+          />
         </View>
       </View>
     </View>
   )
 }
+
+const styles = StyleSheet.create({
+  iconImage: { width: 24 * calWidth, height: 24 * calWidth },
+  flexRow: { flexDirection: 'row' },
+  title: { width: 158 * calWidth, ...TypoGrayphy.heading6 },
+  viewRow: { flexDirection: 'row', justifyContent: 'space-between' },
+  viewWapper: { marginLeft: 12 * calWidth, justifyContent: 'space-between', flex: 1 },
+  imageCard: { width: 72 * calWidth, height: 72 * calWidth, borderRadius: 5 * calWidth },
+  viewCard: {
+    padding: 16 * calWidth,
+    borderColor: Colors.borderColor,
+    borderRadius: 5 * calWidth,
+    alignContent: 'center',
+    flexDirection: 'row',
+    height: 104 * calWidth,
+    borderWidth: StyleSheet.hairlineWidth,
+    width: width - 32 * calWidth,
+    marginRight: 8 * calWidth,
+  },
+})
 
 export default ProductCartHorizontal
